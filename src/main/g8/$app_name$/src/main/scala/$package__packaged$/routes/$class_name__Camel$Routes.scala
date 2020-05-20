@@ -22,17 +22,17 @@ object $class_name;format="Camel"$Routes extends Routes {
     authedService(
       (userId: UserId) => HttpRoutes.of {
         case GET -> Root / "$class_name;format="normalize"$s" => for {
-          $class_name;format="camel"$s <- $class_name;format="Camel"$.all
+          $class_name;format="camel"$s <- $class_name;format="Camel"$.all(userId)
           response <- Ok($class_name;format="Camel"$.index($class_name;format="camel"$s))
         } yield response
         case GET -> Root / "$class_name;format="normalize"$" / id => for {
-          $class_name;format="camel"$ <- $class_name;format="Camel"$.find($class_name;format="Camel"$Id(id))
+          $class_name;format="camel"$ <- $class_name;format="Camel"$.find($class_name;format="Camel"$Id(id), userId)
           response <- Ok($class_name;format="camel"$.show)
         } yield Ok(response)
         case GET -> Root / "$class_name;format="normalize"$" / "add" => Ok($class_name;format="Camel"$.add)
         case req @ POST -> Root / "$class_name;format="normalize"$" / "create" => for {
           form <- req.as[UrlForm]
-          $class_name;format="camel"$ <- $class_name;format="Camel"$.fromUrlForm(form).map(_.save)
+          $class_name;format="camel"$ <- $class_name;format="Camel"$.fromUrlForm(form).map(_.save(userId))
           response <- Redirect($class_name;format="camel"$.showUrl)
         } yield response
         case GET -> Root / "$class_name;format="normalize"$" / id / "edit" => for {
@@ -41,11 +41,11 @@ object $class_name;format="Camel"$Routes extends Routes {
         } yield response
         case req @ PUT  -> Root / "$class_name;format="normalize"$" / "update" => for {
           form <- req.as[UrlForm]
-          $class_name;format="camel"$ <- $class_name;format="Camel"$.fromUrlForm(form).map(_.update)
+          $class_name;format="camel"$ <- $class_name;format="Camel"$.fromUrlForm(form).map(_.update(userId))
           response <- Redirect($class_name;format="camel"$.showUrl)
         } yield response
         case DELETE -> Root / "$class_name;format="normalize"$" / id => for {
-          _ <- $class_name;format="Camel"$.destroy(Some($class_name;format="Camel"$Id(id)))
+          _ <- $class_name;format="Camel"$.destroy(Some($class_name;format="Camel"$Id(id), userId))
           response <- Redirect($class_name;format="Camel"$.indexUrl)
         } yield response
       }

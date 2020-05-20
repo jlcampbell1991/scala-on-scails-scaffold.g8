@@ -16,9 +16,9 @@ object $class_name;format="Camel"$Id {
 }
 
 final case class $class_name;format="Camel"$($model_fields$, createdAt: Option[Date], updatedAt: Option[Date], id: Option[$class_name;format="Camel"$Id], userId: Option[UserId]) {
-  def save[F[_]: Sync : Transactor](implicit userId: UserId): F[$class_name;format="Camel"$] = $class_name;format="Camel"$.create[F](this)
-  def update[F[_]: Sync : Transactor](implicit userId: UserId): F[$class_name;format="Camel"$] = $class_name;format="Camel"$.update[F](this)
-  def destroy[F[_]: Sync : Transactor](implicit userId: UserId): F[Int] = $class_name;format="Camel"$.destroy[F](this.id)
+  def save[F[_]: Sync : Transactor](userId: UserId): F[$class_name;format="Camel"$] = $class_name;format="Camel"$.create[F](this, userId)
+  def update[F[_]: Sync : Transactor](userId: UserId): F[$class_name;format="Camel"$] = $class_name;format="Camel"$.update[F](this, userId)
+  def destroy[F[_]: Sync : Transactor](userId: UserId): F[Int] = $class_name;format="Camel"$.destroy[F](this.id, userId)
 
   def show: Html = $class_name;format="Camel"$.show(this)
   def showUrl: String = $class_name;format="Camel"$.showUrl(this.id)
@@ -39,18 +39,18 @@ object $class_name;format="Camel"$
   }
 
 trait $class_name;format="Camel"$Queries extends Model {
-  def all[F[_]: Sync](implicit userId: UserId, XA: Transactor[F]): F[List[$class_name;format="Camel"$]] =
+  def all[F[_]: Sync](userId: UserId)(implicit XA: Transactor[F]): F[List[$class_name;format="Camel"$]] =
     sql"""
       select * from $app_name;format="snake, lower"$_$class_name;format="snake, lower"$ where user_id = \${userId}
     """.query[$class_name;format="Camel"$].to[List].transact(XA)
 
-  def find[F[_]: Sync]($class_name;format="camel"$Id: $class_name;format="Camel"$Id)(implicit userId: UserId, XA: Transactor[F]): F[$class_name;format="Camel"$] =
+  def find[F[_]: Sync]($class_name;format="camel"$Id: $class_name;format="Camel"$Id, userId: UserId)(implicit, XA: Transactor[F]): F[$class_name;format="Camel"$] =
     sql"""
      select * from $app_name;format="snake, lower"$_$class_name;format="snake, lower"$ where id = \${$class_name;format="camel"$Id.toString} and user_id = \${userId.id}
     """.query[$class_name;format="Camel"$].unique.transact(XA)
 
   ATTENTION
-  def create[F[_]: Sync]($class_name;format="camel"$: $class_name;format="Camel"$)(implicit userId: UserId, XA: Transactor[F]): F[$class_name;format="Camel"$] =
+  def create[F[_]: Sync]($class_name;format="camel"$: $class_name;format="Camel"$, userId: UserId)(implicit XA: Transactor[F]): F[$class_name;format="Camel"$] =
     sql"""
       insert into $app_name;format="snake, lower"$_$class_name;format="snake, lower"$ ($model_fields$, created_at, id, user_id)
       values
@@ -65,7 +65,7 @@ trait $class_name;format="Camel"$Queries extends Model {
     """.update.withUniqueGeneratedKeys[$class_name;format="Camel"$]($model_fields$, "created_at", "updated_at", "id", "user_id").transact(XA)
 
   ATTENTION
-  def update[F[_]: Sync]($class_name;format="camel"$: $class_name;format="Camel"$)(implicit userId: UserId, XA: Transactor[F]): F[$class_name;format="Camel"$] =
+  def update[F[_]: Sync]($class_name;format="camel"$: $class_name;format="Camel"$, userId: UserId)(implicit XA: Transactor[F]): F[$class_name;format="Camel"$] =
     sql"""
       update $app_name;format="snake, lower"$_$class_name;format="snake, lower"$ set
         /*
@@ -76,7 +76,7 @@ trait $class_name;format="Camel"$Queries extends Model {
       and user_id = \${userId.id}
     """.update.withUniqueGeneratedKeys[$class_name;format="Camel"$]($model_fields$, "created_at", "updated_at", "id", "user_id").transact(XA)
 
-  def destroy[F[_]: Sync](id: Option[$class_name;format="Camel"$Id])(implicit userId: UserId, XA: Transactor[F]): F[Int] =
+  def destroy[F[_]: Sync](id: Option[$class_name;format="Camel"$Id], userId: UserId)(implicit XA: Transactor[F]): F[Int] =
     sql"""delete from $app_name;format="snake, lower"$_$class_name;format="snake, lower"$ where id = \${id} and user_id = \${userId}""".update.run.transact(XA)
 }
 
