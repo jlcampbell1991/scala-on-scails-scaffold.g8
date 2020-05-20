@@ -71,7 +71,7 @@ trait $class_name;format="Camel"$Views {
   def index($class_name;format="camel"$s: List[$class_name;format="Camel"$]): Html = views.$class_name;format="normalize"$.index($class_name;format="camel"$s)
   def indexUrl: String = s"""/\${$class_name;format="normaliz"$s}"""
   def show($class_name;format="camel"$: $class_name;format="Camel"$): Html = views.$class_name;format="normalize"$.show($class_name;format="camel"$)
-  def showUrl(id: $class_name;format="Camel"Id): String = s"""/\${$class_name;format="normaliz"$s}/\${id.value.toString}"""
+  def showUrl(id: $class_name;format="Camel"$Id): String = s"""/\${$class_name;format="normaliz"$s}/\${id.value.toString}"""
   def edit($class_name;format="camel"$: $class_name;format="Camel"$): Html = views.$class_name;format="normalize"$.edit($class_name;format="camel"$)
-  def editUrl(id: $class_name;format="Camel"Id): String = s"""/\${$class_name;format="normaliz"$s}/\${id.value.toString}/edit"""
+  def editUrl(id: $class_name;format="Camel"$Id): String = s"""/\${$class_name;format="normaliz"$s}/\${id.value.toString}/edit"""
 }
