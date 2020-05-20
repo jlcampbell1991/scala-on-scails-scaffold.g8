@@ -30,17 +30,17 @@ object $class_name;format="Camel"$ extends $class_name;format="Camel"$Queries
 trait $class_name;format="Camel"$Queries {
   def all[F[_]: Sync](implicit userId: UserId, XA: Transactor[F]): F[List[$class_name;format="Camel"$]] =
     sql"""
-      select * from $app_name;format="snake, lower"$_$class_name;format="camel"$ where user_id = \${userId}
+      select * from $app_name;format="snake, lower"$_$class_name;format="snake, lower"$ where user_id = \${userId}
     """.query[$class_name;format="Camel"$].to[List].transact(XA)
 
   def find[F[_]: Sync]($class_name;format="camel"$Id: $class_name;format="Camel"$Id)(implicit userId: UserId, XA: Transactor[F]): F[$class_name;format="Camel"$] =
     sql"""
-     select * from $app_name;format="snake, lower"$_$class_name;format="camel"$ where id = \${$class_name;format="camel"$Id.toString} and user_id = \${userId.toString}
+     select * from $app_name;format="snake, lower"$_$class_name;format="snake, lower"$ where id = \${$class_name;format="camel"$Id.toString} and user_id = \${userId.toString}
     """.query[$class_name;format="Camel"$].unique.transact(XA)
 
   def create[F[_]: Sync]($class_name;format="camel"$: $class_name;format="Camel"$)(implicit userId: UserId, XA: Transactor[F]): F[$class_name;format="Camel"$] =
     sql"""
-      insert into $app_name;format="snake, lower"$_$class_name;format="camel"$ ($model_fields$, created_at, id, user_id)
+      insert into $app_name;format="snake, lower"$_$class_name;format="snake, lower"$ ($model_fields$, created_at, id, user_id)
       values
       (
         /*
@@ -54,7 +54,7 @@ trait $class_name;format="Camel"$Queries {
 
   def update[F[_]: Sync]($class_name;format="camel"$: $class_name;format="Camel"$)(implicit userId: UserId, XA: Transactor[F]): F[$class_name;format="Camel"$] =
     sql"""
-      update $app_name;format="snake, lower"$_$class_name;format="camel"$ set
+      update $app_name;format="snake, lower"$_$class_name;format="snake, lower"$ set
         /*
           columns = \${$model_fields$}
         */
@@ -64,7 +64,7 @@ trait $class_name;format="Camel"$Queries {
     """.update.withUniqueGeneratedKeys[$class_name;format="Camel"$]($model_fields$, "created_at", "updated_at", "id", "user_id").transact(XA)
 
   def destroy[F[_]: Sync](id: Option[$class_name;format="Camel"$Id])(implicit userId: UserId, XA: Transactor[F]): F[Int] =
-    sql"""delete from $app_name;format="snake, lower"$_$class_name;format="camel"$ where id = \${id} and user_id = \${userId}""".update.run.transact(XA)
+    sql"""delete from $app_name;format="snake, lower"$_$class_name;format="snake, lower"$ where id = \${id} and user_id = \${userId}""".update.run.transact(XA)
 }
 
 trait $class_name;format="Camel"$Views {
