@@ -40,28 +40,28 @@ trait $class_name;format="Camel"$Queries {
 
   def create[F[_]: Sync]($class_name;format="camel"$: $class_name;format="Camel"$)(implicit userId: UserId, XA: Transactor[F]): F[$class_name;format="Camel"$] =
     sql"""
-      insert into $app_name;format="snake, lower"$_$class_name;format="camel"$ ($model_columns$, created_at, id, user_id)
+      insert into $app_name;format="snake, lower"$_$class_name;format="camel"$ ($model_fields$, created_at, id, user_id)
       values
       (
         /*
-        \${$model_columns$},
+        \${$model_fields$},
         */
         \${Date.now},
         \${$class_name;format="Camel"$Id.random},
         \${userId.toString}
       );
-    """.update.withUniqueGeneratedKeys[$class_name;format="Camel"$]($model_columns$, "created_at", "updated_at", "id", "user_id").transact(XA)
+    """.update.withUniqueGeneratedKeys[$class_name;format="Camel"$]($model_fields$, "created_at", "updated_at", "id", "user_id").transact(XA)
 
   def update[F[_]: Sync]($class_name;format="camel"$: $class_name;format="Camel"$)(implicit userId: UserId, XA: Transactor[F]): F[$class_name;format="Camel"$] =
     sql"""
       update $app_name;format="snake, lower"$_$class_name;format="camel"$ set
         /*
-          columns = \${$model_columns$}
+          columns = \${$model_fields$}
         */
         updated_at = \${Date.now}
       where id = \${$class_name;format="camel"$.id}
       and user_id = \${userId.toString}
-    """.update.withUniqueGeneratedKeys[$class_name;format="Camel"$]($model_columns$, "created_at", "updated_at", "id", "user_id").transact(XA)
+    """.update.withUniqueGeneratedKeys[$class_name;format="Camel"$]($model_fields$, "created_at", "updated_at", "id", "user_id").transact(XA)
 
   def destroy[F[_]: Sync](id: Option[$class_name;format="Camel"$Id])(implicit userId: UserId, XA: Transactor[F]): F[Int] =
     sql"""delete from $app_name;format="snake, lower"$_$class_name;format="camel"$ where id = \${id} and user_id = \${userId}""".update.run.transact(XA)
