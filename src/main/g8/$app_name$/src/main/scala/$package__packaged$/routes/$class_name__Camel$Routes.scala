@@ -7,6 +7,11 @@ import org.http4s._
 import org.http4s.twirl._
 import doobie._
 
+/**
+  After generating scaffold, combine these routes to
+  `PublicRoutes` or `AuthRoutes` in /routes/Routes.scala
+*/
+
 object $class_name;format="Camel"$Routes extends Routes {
   def publicRoutes[F[_]: Sync: Transactor](implicit dsl: Http4sDsl[F]): HttpRoutes[F] =
     HttpRoutes.empty
@@ -15,7 +20,7 @@ object $class_name;format="Camel"$Routes extends Routes {
     import dsl._
     authedService(
       (userId: UserId) => HttpRoutes.of {
-        case GET -> Root / "$class_name;format="normalize"$"s => {
+        case GET -> Root / "$class_name;format="normalize"$s" => for {
           $class_name;format="camel"$s <- $class_name;format="Camel"$.all
           response <- $class_name;format="Camel"$.index($class_name;format="camel"$s)
         } yield response
@@ -38,7 +43,7 @@ object $class_name;format="Camel"$Routes extends Routes {
           $class_name;format="camel"$ <- $class_name;format="Camel"$.fromUrlForm(form).map(_.update)
           response <- Redirect($class_name;format="camel"$.showUrl)
         } yield response
-        case DELETE -> Root / "$class_name;format="normalize"$" / id for {
+        case DELETE -> Root / "$class_name;format="normalize"$" / id => for {
           _ <- $class_name;format="Camel"$.destroy($class_name;format="Camel"$Id(id))
           response <- Redirect($class_name;format="Camel"$.indexUrl)
         } yield response
