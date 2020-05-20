@@ -7,6 +7,7 @@ import org.http4s._
 import org.http4s.twirl._
 import doobie._
 
+ATTENTION
 /**
   After generating scaffold, combine these routes to
   `PublicRoutes` or `AuthRoutes` in /routes/Routes.scala

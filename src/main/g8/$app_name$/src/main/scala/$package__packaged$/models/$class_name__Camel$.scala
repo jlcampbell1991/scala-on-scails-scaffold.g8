@@ -43,6 +43,7 @@ trait $class_name;format="Camel"$Queries {
      select * from $app_name;format="snake, lower"$_$class_name;format="snake, lower"$ where id = \${$class_name;format="camel"$Id.toString} and user_id = \${userId.toString}
     """.query[$class_name;format="Camel"$].unique.transact(XA)
 
+  ATTENTION
   def create[F[_]: Sync]($class_name;format="camel"$: $class_name;format="Camel"$)(implicit userId: UserId, XA: Transactor[F]): F[$class_name;format="Camel"$] =
     sql"""
       insert into $app_name;format="snake, lower"$_$class_name;format="snake, lower"$ ($model_fields$, created_at, id, user_id)
@@ -57,6 +58,7 @@ trait $class_name;format="Camel"$Queries {
       );
     """.update.withUniqueGeneratedKeys[$class_name;format="Camel"$]($model_fields$, "created_at", "updated_at", "id", "user_id").transact(XA)
 
+  ATTENTION
   def update[F[_]: Sync]($class_name;format="camel"$: $class_name;format="Camel"$)(implicit userId: UserId, XA: Transactor[F]): F[$class_name;format="Camel"$] =
     sql"""
       update $app_name;format="snake, lower"$_$class_name;format="snake, lower"$ set

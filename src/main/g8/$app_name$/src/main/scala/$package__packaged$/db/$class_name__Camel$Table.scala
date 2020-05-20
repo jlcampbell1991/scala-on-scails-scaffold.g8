@@ -1,5 +1,6 @@
 package $package$
 
+ATTENTION
 /**
   After generating scaffold, append this Table Object
   to `tables` List in /db/Database.scala

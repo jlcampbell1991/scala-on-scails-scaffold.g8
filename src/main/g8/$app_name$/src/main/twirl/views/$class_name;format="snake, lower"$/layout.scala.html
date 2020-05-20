@@ -5,6 +5,7 @@
   <table>
     <tr>
       <th>ID</th>
+      @ATTENTION
       <!-- $model_fields$ -->
       <th>Created</th>
       <th>Last Updated</th>
@@ -12,6 +13,7 @@
   @$class_name;format="camel"$s.map{ $class_name;format="camel"$ =>
     <tr>
       <td><a href="@$class_name;format="camel"$.showUrl">@$class_name;format="camel"$.id</a></td>
+      @ATTENTION
       <!-- $model_fields$ -->
       <td>@$class_name;format="camel"$.created_at</td>
       <td>@$class_name;format="camel"$.updated_at</td>
