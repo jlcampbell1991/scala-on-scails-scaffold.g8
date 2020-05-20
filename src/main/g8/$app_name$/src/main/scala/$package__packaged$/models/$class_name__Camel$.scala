@@ -84,17 +84,18 @@ trait $class_name;format="Camel"$Queries {
 trait $class_name;format="Camel"$Views {
   private def getUrlOrIndex(id: Option[$class_name;format="Camel"$Id], s: $class_name;format="Camel"$Id => String) =
     id.map(s).getOrElse(indexUrl)
+
   def index($class_name;format="camel"$s: List[$class_name;format="Camel"$]): Html = views.$class_name;format="snake, lower"$.index($class_name;format="camel"$s)
   def indexUrl: String = s"""/$class_name;format="normalize"$s"""
   def show($class_name;format="camel"$: $class_name;format="Camel"$): Html = views.$class_name;format="snake, lower"$.show($class_name;format="camel"$)
   def showUrl(maybeId: Option[$class_name;format="Camel"$Id]): String =
-    getUrlOrIndex(maybeId, id => s"""/$class_name;format="normalize"$s/\${id.value.toString}""")
+    getUrlOrIndex(maybeId, id => s"""/$class_name;format="normalize"$/\${id.value.toString}""")
   def add: Html = views.$class_name;format="snake, lower"$.add()
-  def addUrl: String = s"""/$class_name;format="normalize"$s/\${id.value.toString}/add"""
-  def createUrl: String = s"""/$class_name;format="normalize"$s/\${id.value.toString}/create"""
+  def addUrl: String = s"""/$class_name;format="normalize"$/\${id.value.toString}/add"""
+  def createUrl: String = s"""/$class_name;format="normalize"$/\${id.value.toString}/create"""
   def edit($class_name;format="camel"$: $class_name;format="Camel"$): Html = views.$class_name;format="snake, lower"$.edit($class_name;format="camel"$)
   def editUrl(maybeId: Option[$class_name;format="Camel"$Id]): String =
-    getUrlOrIndex(maybeId, id => s"""/$class_name;format="normalize"$s/\${id.value.toString}/edit""")
-  def updateUrl: String = s"""/$class_name;format="normalize"$s/\${id.value.toString}/update"""
+    getUrlOrIndex(maybeId, id => s"""/$class_name;format="normalize"$/\${id.value.toString}/edit""")
+  def updateUrl: String = s"""/$class_name;format="normalize"$/\${id.value.toString}/update"""
   def destroyUrl(maybeId: Option[$class_name;format="Camel"$Id]): String = showUrl(maybeId)
 }
