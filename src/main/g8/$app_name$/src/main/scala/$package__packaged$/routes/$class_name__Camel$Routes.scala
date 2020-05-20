@@ -15,15 +15,15 @@ object $class_name;format="Camel"$Routes extends Routes {
     import dsl._
     authedService(
       (userId: UserId) => HttpRoutes.of {
-        case GET -> Root / "$class_name;formt="normalize"$" / id => for {
+        case GET -> Root / "$class_name;format="normalize"$" / id => for {
           $class_name;format="camel"$ <- $class_name;format="Camel"$.find($class_name;format="Camel"$Id(id))
           response <- $class_name;format="camel"$.show
         } yield Ok(response)
-        case GET -> Root / "$class_name;formt="normalize"$" / "new"
-        case req @ POST -> Root / "$class_name;formt="normalize"$" / "create"
-        case GET -> Root / "$class_name;formt="normalize"$" / id / "edit"
-        case req @ PUT  -> Root / "$class_name;formt="normalize"$" / id / "update"
-        case DELETE -> Root / "$class_name;formt="normalize"$" / id
+        case GET -> Root / "$class_name;format="normalize"$" / "new"
+        case req @ POST -> Root / "$class_name;format="normalize"$" / "create"
+        case GET -> Root / "$class_name;format="normalize"$" / id / "edit"
+        case req @ PUT  -> Root / "$class_name;format="normalize"$" / id / "update"
+        case DELETE -> Root / "$class_name;format="normalize"$" / id
       }
     )
   }
