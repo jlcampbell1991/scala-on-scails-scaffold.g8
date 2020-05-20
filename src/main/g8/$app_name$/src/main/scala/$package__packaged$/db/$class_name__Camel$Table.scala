@@ -1,5 +1,8 @@
 package $package$
 
+import doobie._
+import doobie.implicits._
+
 ATTENTION
 /**
   After generating scaffold, append this Table Object
