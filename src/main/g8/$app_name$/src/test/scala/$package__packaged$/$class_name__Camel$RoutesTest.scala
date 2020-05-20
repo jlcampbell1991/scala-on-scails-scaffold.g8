@@ -8,8 +8,8 @@ import org.http4s.twirl._
 
 final class $class_name;format="Camel"$RoutesTest extends BaseTest {
   ATTENTION
-  val $class_name;format="camel"Form: UrlForm = Urlform($model_fields$)
-  val $class_name;format="camel": $class_name;format="Camel"$ = $class_name;format="Camel"$($model_fields$).save[IO].unsafeRunSync
+  val $class_name;format="camel"$Form: UrlForm = Urlform($model_fields$)
+  val $class_name;format="camel"$: $class_name;format="Camel"$ = $class_name;format="Camel"$($model_fields$).save[IO].unsafeRunSync
 
   """GET -> Root / "$class_name;format="normalize"$s"""" in {
     check[String](
@@ -25,7 +25,7 @@ final class $class_name;format="Camel"$RoutesTest extends BaseTest {
     check[String](
       service.orNotFound
         .run(
-          Request(method = Method.GET, uri = Uri.uri($class_name;format="camel".showUrl))
+          Request(method = Method.GET, uri = Uri.uri($class_name;format="camel"$.showUrl))
         ),
       Status.Ok,
       None
@@ -46,7 +46,7 @@ final class $class_name;format="Camel"$RoutesTest extends BaseTest {
       service.orNotFound
         .run(
           Request(method = Method.POST, uri = Uri.uri($class_name;format="Camel"$.createUrl)).withEntity(
-            $class_name;format="camel"Form
+            $class_name;format="camel"$Form
           )
         ),
       Status.Ok,
@@ -68,7 +68,7 @@ final class $class_name;format="Camel"$RoutesTest extends BaseTest {
       service.orNotFound
         .run(
           Request(method = Method.PUT, uri = Uri.uri($class_name;format="Camel"$.updateUrl)).withEntity(
-            $class_name;format="camel"Form
+            $class_name;format="camel"$Form
           )
         ),
       Status.Ok,
@@ -80,7 +80,7 @@ final class $class_name;format="Camel"$RoutesTest extends BaseTest {
       service.orNotFound
         .run(
           Request(method = Method.DELETE, uri = Uri.uri($class_name;format="camel"$.destroyUrl)).withEntity(
-            $class_name;format="camel"Form
+            $class_name;format="camel"$Form
           )
         ),
       Status.Ok,
