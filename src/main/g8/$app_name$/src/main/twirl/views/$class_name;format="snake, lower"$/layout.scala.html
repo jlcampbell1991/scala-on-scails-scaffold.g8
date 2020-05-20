@@ -1,0 +1,23 @@
+@import test.flap.$class_name;format="Camel"$
+@(title: String, $class_name;format="camel"$s: List[$class_name;format="Camel"$])
+@views.html.layouts.application(title) {
+  <table><tr><td><h1>@title</h1></td><td><a href="@$class_name;format="Camel"$.addUrl">Add new</a></td><td><a href="/$class_name;format="camel"$s">All $class_name;format="Camel"$s</a></td></tr></table>
+  <table>
+    <tr>
+      <th>ID</th>
+      <!-- $model_fields$ -->
+      <th>Created</th>
+      <th>Last Updated</th>
+    </tr>
+  @$class_name;format="camel"$s.map{ $class_name;format="camel"$ =>
+    <tr>
+      <td><a href="@$class_name;format="camel"$.showUrl">@$class_name;format="camel"$.id</a></td>
+      <!-- $model_fields$ -->
+      <td>@$class_name;format="camel"$.created_at</td>
+      <td>@$class_name;format="camel"$.updated_at</td>
+      <td><a href="@$class_name;format="camel"$.editUrl">Edit</a></td>
+      <td><a href="@$class_name;format="camel"$.destroyUrl">Delete</a></td>
+    </tr>
+  }
+  </table>
+}

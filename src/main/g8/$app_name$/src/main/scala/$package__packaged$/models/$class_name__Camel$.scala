@@ -18,14 +18,15 @@ object $class_name;format="Camel"$Id {
 }
 
 final case class $class_name;format="Camel"$($model_fields$, createdAt: Option[Date], updatedAt: Option[Date], id: Option[$class_name;format="Camel"$Id], userId: Option[UserId]) {
-  def save[F[_]: Sync : Transactor]($class_name;format="camel"$: $class_name;format="Camel"$)(implicit userId: UserId): F[$class_name;format="Camel"$] = $class_name;format="Camel"$.create(this)
-  def update[F[_]: Sync : Transactor]($class_name;format="camel"$: $class_name;format="Camel"$)(implicit userId: UserId): F[$class_name;format="Camel"$] = $class_name;format="Camel"$.update(this)
-  def destroy[F[_]: Sync : Transactor]($class_name;format="camel"$: $class_name;format="Camel"$)(implicit userId: UserId): F[Int] = $class_name;format="Camel"$.destroy(this.id)
+  def save[F[_]: Sync : Transactor]($class_name;format="camel"$: $class_name;format="Camel"$)(implicit userId: UserId): F[$class_name;format="Camel"$] = $class_name;format="Camel"$.create[F](this)
+  def update[F[_]: Sync : Transactor]($class_name;format="camel"$: $class_name;format="Camel"$)(implicit userId: UserId): F[$class_name;format="Camel"$] = $class_name;format="Camel"$.update[F](this)
+  def destroy[F[_]: Sync : Transactor]($class_name;format="camel"$: $class_name;format="Camel"$)(implicit userId: UserId): F[Int] = $class_name;format="Camel"$.destroy[F](this.id)
 
   def show: Html = $class_name;format="Camel"$.show(this)
-  def showUrl: String = $class_name;format="Camel"$.show(this.id)
+  def showUrl: String = $class_name;format="Camel"$.showUrl(this.id)
   def edit: Html = $class_name;format="Camel"$.edit(this)
   def editUrl: String = $class_name;format="Camel"$.showUrl(this.id)
+  def destroyUrl: String = $class_name;format="Camel"$.destroyUrl(this.id)
 }
 
 object $class_name;format="Camel"$ extends $class_name;format="Camel"$Queries
@@ -76,6 +77,11 @@ trait $class_name;format="Camel"$Views {
   def indexUrl: String = s"""$class_name;format="normalize"$s"""
   def show($class_name;format="camel"$: $class_name;format="Camel"$): Html = views.$class_name;format="snake, lower"$.show($class_name;format="camel"$)
   def showUrl(id: $class_name;format="Camel"$Id): String = s"""$class_name;format="normalize"$s/\${id.value.toString}"""
+  def add: Html = views.$class_name;format="snake, lower"$.add()
+  def addUrl: String = s"""$class_name;format="normalize"$s/\${id.value.toString}/add"""
+  def createUrl: String = s"""$class_name;format="normalize"$s/\${id.value.toString}/create"""
   def edit($class_name;format="camel"$: $class_name;format="Camel"$): Html = views.$class_name;format="snake, lower"$.edit($class_name;format="camel"$)
   def editUrl(id: $class_name;format="Camel"$Id): String = s"""$class_name;format="normalize"$s/\${id.value.toString}/edit"""
+  def updateUrl: String = s"""$class_name;format="normalize"$s/\${id.value.toString}/update"""
+  def destroyUrl(id: $class_name;format="Camel"$Id): String = showUrl(id)
 }

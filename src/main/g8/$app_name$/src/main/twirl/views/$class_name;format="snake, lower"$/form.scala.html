@@ -1,0 +1,15 @@
+@import test.flap.$class_name;format="Camel"$
+
+@(title: String, $class_name;format="camel"$: $class_name;format="Camel"$, action: String, method: String)
+
+@views.html.layouts.application(title) {
+  <h1 class="formTitle">@title</h1>
+  <form action="/@action" method="@method" id="$class_name;format="camel"$Form">
+    <!--
+    Color: <input type="text" name="color" value="@$class_name;format="camel"$.color"></input><br>
+    Age: <input type="number" name="age" value="@$class_name;format="camel"$.age"></input><br>
+    Gender: <input type="checkbox" name="gender" value="@$class_name;format="camel"$.gender"></input><br>
+    -->
+    <input type="submit" value="Submit" id="formButton">
+  </form>
+}
