@@ -8,28 +8,23 @@ import org.http4s.twirl._
 import doobie._
 
 object $class_name;format="Camel"$Routes extends Routes {
-  def publicRoutes[F[_]: Sync: Transactor](implicit dsl: Http4sDsl[F]): HttpRoutes[F] = {
-    import dsl._
-
-    HttpRoutes.of {
-      case GET -> Root / "login" => Ok(Session.login)
-      case params @ POST -> Root / "login" => {
-          for {
-            form <- params.as[UrlForm]
-            session <- Session.fromUrlForm(form)
-            user <- session.findUser
-            response <- user.fold(BadRequest(Session.login))(_ => Ok(Session.login))
-          } yield response
-        }.handleErrorWith { case _: MalformedMessageBodyFailure => BadRequest(Session.login) }
-      case GET -> Root / "logout" =>
-        for {
-          response <- Redirect(Session.loginUrl)
-        } yield response.removeCookie(Session.COOKIE_NAME)
-    }
-  }
+  def publicRoutes[F[_]: Sync: Transactor](implicit dsl: Http4sDsl[F]): HttpRoutes[F] =
+    HttpRoutes.empty
 
   def authedRoutes[F[_]: Sync: Transactor](implicit dsl: Http4sDsl[F]): HttpRoutes[F] = {
     import dsl._
-    authedService((_: UserId) => HttpRoutes.empty)
+    authedService(
+      (userId: UserId) => HttpRoutes.of {
+        case GET -> Root / "$class_name;formt="normalize"$" / id => for {
+          $class_name;format="camel"$ <- $class_name;format="Camel"$.find($class_name;format="Camel"$Id(id))
+          response <- $class_name;format="camel"$.show
+        } yield Ok(response)
+        case GET -> Root / "$class_name;formt="normalize"$" / "new"
+        case req @ POST -> Root / "$class_name;formt="normalize"$" / "create"
+        case GET -> Root / "$class_name;formt="normalize"$" / id / "edit"
+        case req @ PUT  -> Root / "$class_name;formt="normalize"$" / id / "update"
+        case DELETE -> Root / "$class_name;formt="normalize"$" / id
+      }
+    )
   }
 }
