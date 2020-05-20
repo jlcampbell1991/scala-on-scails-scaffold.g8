@@ -17,4 +17,4 @@ object $class_name;format="Camel"$Id {
   def random: $class_name;format="Camel"$Id = $class_name;format="Camel"$Id(UUID.randomUUID)
 }
 
-final case class $class_name;format="Camel"$(name: String, unencPass: Password, userId: $class_name;format="Camel"$Id)
+final case class $class_name;format="Camel"$($model_fields$)
