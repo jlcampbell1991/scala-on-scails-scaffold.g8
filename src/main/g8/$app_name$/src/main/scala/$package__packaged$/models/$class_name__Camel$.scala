@@ -29,8 +29,17 @@ final case class $class_name;format="Camel"$($model_fields$, createdAt: Option[D
   def destroyUrl: String = $class_name;format="Camel"$.destroyUrl(this.id)
 }
 
-object $class_name;format="Camel"$ extends $class_name;format="Camel"$Queries
-  with $class_name;format="Camel"$Views
+object $class_name;format="Camel"$ extends Model
+  with $class_name;format="Camel"$Queries
+  with $class_name;format="Camel"$Views {
+    ATTENTION
+    def fromUrlForm[F[_]: Sync](form: UrlForm): F[$class_name;format="Camel"$] =
+      for {
+        $model_fields$
+        // name <- getValueOrRaiseError[F](form, "name")
+        // password <- getValueOrRaiseError[F](form, "password")
+      } yield Session(name, password)
+  }
 
 trait $class_name;format="Camel"$Queries {
   def all[F[_]: Sync](implicit userId: UserId, XA: Transactor[F]): F[List[$class_name;format="Camel"$]] =

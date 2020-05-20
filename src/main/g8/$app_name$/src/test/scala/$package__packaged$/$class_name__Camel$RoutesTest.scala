@@ -21,7 +21,7 @@ final class $class_name;format="Camel"$RoutesTest extends BaseTest {
       None
     )
   }
-  """GET -> Root / "$class_name;format="normalize"$""" / id" in {
+  """GET -> Root / "$class_name;format="normalize"$/ id"""" in {
     check[String](
       service.orNotFound
         .run(
