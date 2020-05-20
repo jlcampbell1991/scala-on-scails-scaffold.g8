@@ -18,6 +18,10 @@ object $class_name;format="Camel"$Id {
 }
 
 final case class $class_name;format="Camel"$($model_fields$, createdAt: Option[Date], updatedAt: Option[Date], id: Option[$class_name;format="Camel"$Id], userId: Option[UserId]) {
+  def save[F[_]: Sync : Transactor]($class_name;format="camel"$: $class_name;format="Camel"$)(implicit userId: UserId): F[$class_name;format="Camel"$] = $class_name;format="Camel"$.create(this)
+  def update[F[_]: Sync : Transactor]($class_name;format="camel"$: $class_name;format="Camel"$)(implicit userId: UserId): F[$class_name;format="Camel"$] = $class_name;format="Camel"$.update(this)
+  def destroy[F[_]: Sync : Transactor]($class_name;format="camel"$: $class_name;format="Camel"$)(implicit userId: UserId): F[Int] = $class_name;format="Camel"$.destroy(this.id)
+
   def show: Html = $class_name;format="Camel"$.show(this)
   def showUrl: String = $class_name;format="Camel"$.show(this.id)
   def edit: Html = $class_name;format="Camel"$.edit(this)
