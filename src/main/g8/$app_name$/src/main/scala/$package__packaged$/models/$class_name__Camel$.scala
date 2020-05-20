@@ -35,7 +35,7 @@ trait $class_name;format="Camel"$Queries {
 
   def find[F[_]: Sync]($class_name;format="camel"$Id: $class_name;format="Camel"$Id)(implicit userId: UserId, XA: Transactor[F]): F[$class_name;format="Camel"$] =
     sql"""
-     select * from $app_name;format="snake, lower"$_$class_name;format="camel"$ where id = \${$class_name;format="camel"$Id.toString} and user_id = ${userId.toString}
+     select * from $app_name;format="snake, lower"$_$class_name;format="camel"$ where id = \${$class_name;format="camel"$Id.toString} and user_id = \${userId.toString}
     """.query[$class_name;format="Camel"$].unique.transact(XA)
 
   def create[F[_]: Sync]($class_name;format="camel"$: $class_name;format="Camel"$)(implicit userId: UserId, XA: Transactor[F]): F[$class_name;format="Camel"$] =
