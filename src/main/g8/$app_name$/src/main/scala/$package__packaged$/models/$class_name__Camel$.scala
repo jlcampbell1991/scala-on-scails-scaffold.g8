@@ -77,7 +77,7 @@ trait $class_name;format="Camel"$Queries extends Model {
     """.update.withUniqueGeneratedKeys[$class_name;format="Camel"$]($model_fields$, "created_at", "updated_at", "id", "user_id").transact(XA)
 
   def destroy[F[_]: Sync](id: Option[$class_name;format="Camel"$Id], userId: UserId)(implicit XA: Transactor[F]): F[Int] =
-    sql"""delete from $app_name;format="snake, lower"$_$class_name;format="snake, lower"$ where id = \${id} and user_id = \${userId}""".update.run.transact(XA)
+    sql"""delete from $app_name;format="snake, lower"$_$class_name;format="snake, lower"$ where id = \${id} and user_id = \${userId.id}""".update.run.transact(XA)
 }
 
 trait $class_name;format="Camel"$Views {
