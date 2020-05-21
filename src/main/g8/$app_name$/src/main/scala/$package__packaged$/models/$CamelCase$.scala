@@ -85,16 +85,16 @@ trait $CamelCase$Views {
     id.map(s).getOrElse(indexUrl)
 
   def index($camelCase$s: List[$CamelCase$]): Html = views.html.$snake_case$.index($camelCase$s)
-  def indexUrl: String = s"""/$normal-name$s"""
+  def indexUrl: String = s"""/$normalized$s"""
   def show($camelCase$: $CamelCase$): Html = views.html.$snake_case$.show($camelCase$)
   def showUrl(maybeId: Option[$CamelCase$Id]): String =
-    getUrlOrIndex(maybeId, id => s"""/$normal-name$/\${id.value.toString}""")
+    getUrlOrIndex(maybeId, id => s"""/$normalized$/\${id.value.toString}""")
   def add: Html = views.html.$snake_case$.add()
-  def addUrl: String = s"""/$normal-name$/add"""
-  def createUrl: String = s"""/$normal-name$/create"""
+  def addUrl: String = s"""/$normalized$/add"""
+  def createUrl: String = s"""/$normalized$/create"""
   def edit($camelCase$: $CamelCase$): Html = views.html.$snake_case$.edit($camelCase$)
   def editUrl(maybeId: Option[$CamelCase$Id]): String =
-    getUrlOrIndex(maybeId, id => s"""/$normal-name$/\${id.value.toString}/edit""")
-  def updateUrl: String = s"""/$normal-name$/update"""
+    getUrlOrIndex(maybeId, id => s"""/$normalized$/\${id.value.toString}/edit""")
+  def updateUrl: String = s"""/$normalized$/update"""
   def destroyUrl(maybeId: Option[$CamelCase$Id]): String = showUrl(maybeId)
 }

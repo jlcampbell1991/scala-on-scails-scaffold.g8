@@ -14,7 +14,7 @@ final class $CamelCase$RoutesTest extends BaseTest {
   val $camelCase$Form: UrlForm = UrlForm($model_fields$)
   val $camelCase$: $CamelCase$ = $CamelCase$($model_fields$).save[IO](userId).unsafeRunSync
 
-  """GET -> Root / "$normal-name$s"""" in {
+  """GET -> Root / "$normalized$s"""" in {
     check[String](
       service.orNotFound
         .run(
@@ -24,7 +24,7 @@ final class $CamelCase$RoutesTest extends BaseTest {
       None
     )
   }
-  """GET -> Root / "$normal-name$/ id"""" in {
+  """GET -> Root / "$normalized$/ id"""" in {
     check[String](
       service.orNotFound
         .run(
@@ -34,7 +34,7 @@ final class $CamelCase$RoutesTest extends BaseTest {
       None
     )
   }
-  """GET -> Root / "$normal-name$" / "add"""" in {
+  """GET -> Root / "$normalized$" / "add"""" in {
     check[String](
       service.orNotFound
         .run(
@@ -44,7 +44,7 @@ final class $CamelCase$RoutesTest extends BaseTest {
       None
     )
   }
-  """POST -> Root / "$normal-name$" / "create"""" in {
+  """POST -> Root / "$normalized$" / "create"""" in {
     check[String](
       service.orNotFound
         .run(
@@ -56,7 +56,7 @@ final class $CamelCase$RoutesTest extends BaseTest {
       None
     )
   }
-  """GET -> Root / "$normal-name$" / id / "edit"""" in {
+  """GET -> Root / "$normalized$" / id / "edit"""" in {
     check[String](
       service.orNotFound
         .run(
@@ -66,7 +66,7 @@ final class $CamelCase$RoutesTest extends BaseTest {
       None
     )
   }
-  """PUT  -> Root / "$normal-name$" / id / "update"""" in {
+  """PUT  -> Root / "$normalized$" / id / "update"""" in {
     check[String](
       service.orNotFound
         .run(
@@ -78,7 +78,7 @@ final class $CamelCase$RoutesTest extends BaseTest {
       None
     )
   }
-  """DELETE -> Root / "$normal-name$" / id""" in {
+  """DELETE -> Root / "$normalized$" / id""" in {
     check[String](
       service.orNotFound
         .run(

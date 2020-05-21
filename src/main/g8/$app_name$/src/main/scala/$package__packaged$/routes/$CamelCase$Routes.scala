@@ -21,30 +21,30 @@ object $CamelCase$Routes extends Routes {
     import dsl._
     authedService(
       (userId: UserId) => HttpRoutes.of {
-        case GET -> Root / "$normal-name$s" => for {
+        case GET -> Root / "$normalized$s" => for {
           $camelCase$s <- $CamelCase$.all(userId)
           response <- Ok($CamelCase$.index($camelCase$s))
         } yield response
-        case GET -> Root / "$normal-name$" / id => for {
+        case GET -> Root / "$normalized$" / id => for {
           $camelCase$ <- $CamelCase$.find($CamelCase$Id(id), userId)
           response <- Ok($camelCase$.show)
         } yield response
-        case GET -> Root / "$normal-name$" / "add" => Ok($CamelCase$.add)
-        case req @ POST -> Root / "$normal-name$" / "create" => for {
+        case GET -> Root / "$normalized$" / "add" => Ok($CamelCase$.add)
+        case req @ POST -> Root / "$normalized$" / "create" => for {
           form <- req.as[UrlForm]
           $camelCase$ <- $CamelCase$.fromUrlForm(form).flaMap(_.save(userId))
           response <- Redirect($camelCase$.showUrl)
         } yield response
-        case GET -> Root / "$normal-name$" / id / "edit" => for {
+        case GET -> Root / "$normalized$" / id / "edit" => for {
           $camelCase$ <- $CamelCase$.find($CamelCase$Id(id), userId)
           response <- Ok($camelCase$.edit)
         } yield response
-        case req @ PUT  -> Root / "$normal-name$" / "update" => for {
+        case req @ PUT  -> Root / "$normalized$" / "update" => for {
           form <- req.as[UrlForm]
           $camelCase$ <- $CamelCase$.fromUrlForm(form).flatMap(_.update(userId))
           response <- Redirect($camelCase$.showUrl)
         } yield response
-        case DELETE -> Root / "$normal-name$" / id => for {
+        case DELETE -> Root / "$normalized$" / id => for {
           _ <- $CamelCase$.destroy(Some($CamelCase$Id(id)), userId)
           response <- Redirect($CamelCase$.indexUrl)
         } yield response
