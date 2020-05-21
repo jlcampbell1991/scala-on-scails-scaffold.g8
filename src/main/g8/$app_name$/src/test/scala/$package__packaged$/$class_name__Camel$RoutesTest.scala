@@ -5,85 +5,88 @@ import org.http4s._
 import org.http4s.circe.CirceEntityCodec._
 import org.http4s.implicits._
 import org.http4s.twirl._
+import org.http4s.UrlForm
 
-final class $class_name;format="Camel"$RoutesTest extends BaseTest {
+final class $CamelCase$RoutesTest extends BaseTest {
   ATTENTION
-  val $class_name;format="camel"$Form: UrlForm = Urlform($model_fields$)
-  val $class_name;format="camel"$: $class_name;format="Camel"$ = $class_name;format="Camel"$($model_fields$).save[IO].unsafeRunSync
+  import DBDriver.XA
+  val userId: UserId = UserId.random
+  val $camelCase$Form: UrlForm = UrlForm($model_fields$)
+  val $camelCase$: $CamelCase$ = $CamelCase$($model_fields$).save[IO](userId).unsafeRunSync
 
-  """GET -> Root / "$class_name;format="normalize"$s"""" in {
+  """GET -> Root / "$normal-name$s"""" in {
     check[String](
       service.orNotFound
         .run(
-          Request(method = Method.GET, uri = Uri.uri($class_name;format="Camel"$.indexUrl))
+          Request(method = Method.GET, uri = Uri.unsafeFromString($CamelCase$.indexUrl))
         ),
       Status.Ok,
       None
     )
   }
-  """GET -> Root / "$class_name;format="normalize"$/ id"""" in {
+  """GET -> Root / "$normal-name$/ id"""" in {
     check[String](
       service.orNotFound
         .run(
-          Request(method = Method.GET, uri = Uri.uri($class_name;format="camel"$.showUrl))
+          Request(method = Method.GET, uri = Uri.unsafeFromString($camelCase$.showUrl))
         ),
       Status.Ok,
       None
     )
   }
-  """GET -> Root / "$class_name;format="normalize"$" / "add"""" in {
+  """GET -> Root / "$normal-name$" / "add"""" in {
     check[String](
       service.orNotFound
         .run(
-          Request(method = Method.GET, uri = Uri.uri($class_name;format="Camel"$.addUrl))
+          Request(method = Method.GET, uri = Uri.unsafeFromString($CamelCase$.addUrl))
         ),
       Status.Ok,
       None
     )
   }
-  """POST -> Root / "$class_name;format="normalize"$" / "create"""" in {
+  """POST -> Root / "$normal-name$" / "create"""" in {
     check[String](
       service.orNotFound
         .run(
-          Request(method = Method.POST, uri = Uri.uri($class_name;format="Camel"$.createUrl)).withEntity(
-            $class_name;format="camel"$Form
+          Request(method = Method.POST, uri = Uri.unsafeFromString($CamelCase$.createUrl)).withEntity(
+            $camelCase$Form
           )
         ),
-      Status.Ok,
+      Status.SeeOther,
       None
     )
   }
-  """GET -> Root / "$class_name;format="normalize"$" / id / "edit"""" in {
+  """GET -> Root / "$normal-name$" / id / "edit"""" in {
     check[String](
       service.orNotFound
         .run(
-          Request(method = Method.GET, uri = Uri.uri($class_name;format="Camel"$.editUrl))
+          Request(method = Method.GET, uri = Uri.unsafeFromString($camelCase$.editUrl))
         ),
       Status.Ok,
       None
     )
   }
-  """PUT  -> Root / "$class_name;format="normalize"$" / id / "update"""" in {
+  """PUT  -> Root / "$normal-name$" / id / "update"""" in {
     check[String](
       service.orNotFound
         .run(
-          Request(method = Method.PUT, uri = Uri.uri($class_name;format="Camel"$.updateUrl)).withEntity(
-            $class_name;format="camel"$Form
+          Request(method = Method.PUT, uri = Uri.unsafeFromString($CamelCase$.updateUrl)).withEntity(
+            $camelCase$Form
           )
         ),
-      Status.Ok,
+      Status.SeeOther,
       None
     )
   }
-  """DELETE -> Root / "$class_name;format="normalize"$" / id""" in {
+  """DELETE -> Root / "$normal-name$" / id""" in {
     check[String](
       service.orNotFound
         .run(
-          Request(method = Method.DELETE, uri = Uri.uri($class_name;format="camel"$.destroyUrl)).withEntity(
-            $class_name;format="camel"$Form
+          Request(method = Method.DELETE, uri = Uri.unsafeFromString($camelCase$.destroyUrl)).withEntity(
+            $camelCase$Form
           )
         ),
-      Status.Ok,
+      Status.SeeOther,
       None
     )
   }

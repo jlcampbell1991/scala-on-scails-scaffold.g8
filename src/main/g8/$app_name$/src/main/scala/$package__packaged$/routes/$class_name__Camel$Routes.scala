@@ -13,7 +13,7 @@ ATTENTION
   `PublicRoutes` or `AuthRoutes` in /routes/Routes.scala
 */
 
-object $class_name;format="Camel"$Routes extends Routes {
+object $CamelCase$Routes extends Routes {
   def publicRoutes[F[_]: Sync: Transactor](implicit dsl: Http4sDsl[F]): HttpRoutes[F] =
     HttpRoutes.empty
 
@@ -21,32 +21,32 @@ object $class_name;format="Camel"$Routes extends Routes {
     import dsl._
     authedService(
       (userId: UserId) => HttpRoutes.of {
-        case GET -> Root / "$class_name;format="normalize"$s" => for {
-          $class_name;format="camel"$s <- $class_name;format="Camel"$.all(userId)
-          response <- Ok($class_name;format="Camel"$.index($class_name;format="camel"$s))
+        case GET -> Root / "$normal-name$s" => for {
+          $camelCase$s <- $CamelCase$.all(userId)
+          response <- Ok($CamelCase$.index($camelCase$s))
         } yield response
-        case GET -> Root / "$class_name;format="normalize"$" / id => for {
-          $class_name;format="camel"$ <- $class_name;format="Camel"$.find($class_name;format="Camel"$Id(id), userId)
-          response <- Ok($class_name;format="camel"$.show)
-        } yield Ok(response)
-        case GET -> Root / "$class_name;format="normalize"$" / "add" => Ok($class_name;format="Camel"$.add)
-        case req @ POST -> Root / "$class_name;format="normalize"$" / "create" => for {
+        case GET -> Root / "$normal-name$" / id => for {
+          $camelCase$ <- $CamelCase$.find($CamelCase$Id(id), userId)
+          response <- Ok($camelCase$.show)
+        } yield response
+        case GET -> Root / "$normal-name$" / "add" => Ok($CamelCase$.add)
+        case req @ POST -> Root / "$normal-name$" / "create" => for {
           form <- req.as[UrlForm]
-          $class_name;format="camel"$ <- $class_name;format="Camel"$.fromUrlForm(form).map(_.save(userId))
-          response <- Redirect($class_name;format="camel"$.showUrl)
+          $camelCase$ <- $CamelCase$.fromUrlForm(form).flaMap(_.save(userId))
+          response <- Redirect($camelCase$.showUrl)
         } yield response
-        case GET -> Root / "$class_name;format="normalize"$" / id / "edit" => for {
-          $class_name;format="camel"$ <- $class_name;format="Camel"$.find($class_name;format="Camel"$Id(id))
-          response <- Ok($class_name;format="camel"$.edit)
+        case GET -> Root / "$normal-name$" / id / "edit" => for {
+          $camelCase$ <- $CamelCase$.find($CamelCase$Id(id), userId)
+          response <- Ok($camelCase$.edit)
         } yield response
-        case req @ PUT  -> Root / "$class_name;format="normalize"$" / "update" => for {
+        case req @ PUT  -> Root / "$normal-name$" / "update" => for {
           form <- req.as[UrlForm]
-          $class_name;format="camel"$ <- $class_name;format="Camel"$.fromUrlForm(form).map(_.update(userId))
-          response <- Redirect($class_name;format="camel"$.showUrl)
+          $camelCase$ <- $CamelCase$.fromUrlForm(form).flatMap(_.update(userId))
+          response <- Redirect($camelCase$.showUrl)
         } yield response
-        case DELETE -> Root / "$class_name;format="normalize"$" / id => for {
-          _ <- $class_name;format="Camel"$.destroy(Some($class_name;format="Camel"$Id(id), userId))
-          response <- Redirect($class_name;format="Camel"$.indexUrl)
+        case DELETE -> Root / "$normal-name$" / id => for {
+          _ <- $CamelCase$.destroy(Some($CamelCase$Id(id)), userId)
+          response <- Redirect($CamelCase$.indexUrl)
         } yield response
       }
     )

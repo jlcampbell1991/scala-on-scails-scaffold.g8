@@ -9,92 +9,92 @@ import org.http4s.UrlForm
 import play.twirl.api.Html
 import java.util.UUID
 
-final case class $class_name;format="Camel"$Id(value: UUID)
-object $class_name;format="Camel"$Id {
-  def apply(id: String): $class_name;format="Camel"$Id = $class_name;format="Camel"$Id(UUID.fromString(id))
-  def random: $class_name;format="Camel"$Id = $class_name;format="Camel"$Id(UUID.randomUUID)
+final case class $CamelCase$Id(value: UUID)
+object $CamelCase$Id {
+  def apply(id: String): $CamelCase$Id = $CamelCase$Id(UUID.fromString(id))
+  def random: $CamelCase$Id = $CamelCase$Id(UUID.randomUUID)
 }
 
-final case class $class_name;format="Camel"$($model_fields$, createdAt: Option[Date], updatedAt: Option[Date], id: Option[$class_name;format="Camel"$Id], userId: Option[UserId]) {
-  def save[F[_]: Sync : Transactor](userId: UserId): F[$class_name;format="Camel"$] = $class_name;format="Camel"$.create[F](this, userId)
-  def update[F[_]: Sync : Transactor](userId: UserId): F[$class_name;format="Camel"$] = $class_name;format="Camel"$.update[F](this, userId)
-  def destroy[F[_]: Sync : Transactor](userId: UserId): F[Int] = $class_name;format="Camel"$.destroy[F](this.id, userId)
+final case class $CamelCase$($model_fields$, createdAt: Option[Date], updatedAt: Option[Date], id: Option[$CamelCase$Id], userId: Option[UserId]) {
+  def save[F[_]: Sync : Transactor](userId: UserId): F[$CamelCase$] = $CamelCase$.create[F](this, userId)
+  def update[F[_]: Sync : Transactor](userId: UserId): F[$CamelCase$] = $CamelCase$.update[F](this, userId)
+  def destroy[F[_]: Sync : Transactor](userId: UserId): F[Int] = $CamelCase$.destroy[F](this.id, userId)
 
-  def show: Html = $class_name;format="Camel"$.show(this)
-  def showUrl: String = $class_name;format="Camel"$.showUrl(this.id)
-  def edit: Html = $class_name;format="Camel"$.edit(this)
-  def editUrl: String = $class_name;format="Camel"$.showUrl(this.id)
-  def destroyUrl: String = $class_name;format="Camel"$.destroyUrl(this.id)
+  def show: Html = $CamelCase$.show(this)
+  def showUrl: String = $CamelCase$.showUrl(this.id)
+  def edit: Html = $CamelCase$.edit(this)
+  def editUrl: String = $CamelCase$.showUrl(this.id)
+  def destroyUrl: String = $CamelCase$.destroyUrl(this.id)
 }
 
-object $class_name;format="Camel"$
-  extends $class_name;format="Camel"$Queries
-  with $class_name;format="Camel"$Views {
+object $CamelCase$
+  extends $CamelCase$Queries
+  with $CamelCase$Views {
     ATTENTION
-    def fromUrlForm[F[_]: Sync](form: UrlForm): F[$class_name;format="Camel"$] =
+    def fromUrlForm[F[_]: Sync](form: UrlForm): F[$CamelCase$] =
       for {
         $model_fields$
         // name <- getValueOrRaiseError[F](form, "name")
-      } yield $class_name;format="Camel"$($model_fields$)
+      } yield $CamelCase$($model_fields$)
   }
 
-trait $class_name;format="Camel"$Queries extends Model {
-  def all[F[_]: Sync](userId: UserId)(implicit XA: Transactor[F]): F[List[$class_name;format="Camel"$]] =
+trait $CamelCase$Queries extends Model {
+  def all[F[_]: Sync](userId: UserId)(implicit XA: Transactor[F]): F[List[$CamelCase$]] =
     sql"""
-      select * from $app_name;format="snake, lower"$_$class_name;format="snake, lower"$ where user_id = \${userId}
-    """.query[$class_name;format="Camel"$].to[List].transact(XA)
+      select * from $table_name$ where user_id = \${userId}
+    """.query[$CamelCase$].to[List].transact(XA)
 
-  def find[F[_]: Sync]($class_name;format="camel"$Id: $class_name;format="Camel"$Id, userId: UserId)(implicit, XA: Transactor[F]): F[$class_name;format="Camel"$] =
+  def find[F[_]: Sync]($camelCase$Id: $CamelCase$Id, userId: UserId)(implicit XA: Transactor[F]): F[$CamelCase$] =
     sql"""
-     select * from $app_name;format="snake, lower"$_$class_name;format="snake, lower"$ where id = \${$class_name;format="camel"$Id.toString} and user_id = \${userId.id}
-    """.query[$class_name;format="Camel"$].unique.transact(XA)
+     select * from $table_name$ where id = \${$camelCase$Id.toString} and user_id = \${userId.id}
+    """.query[$CamelCase$].unique.transact(XA)
 
   ATTENTION
-  def create[F[_]: Sync]($class_name;format="camel"$: $class_name;format="Camel"$, userId: UserId)(implicit XA: Transactor[F]): F[$class_name;format="Camel"$] =
+  def create[F[_]: Sync]($camelCase$: $CamelCase$, userId: UserId)(implicit XA: Transactor[F]): F[$CamelCase$] =
     sql"""
-      insert into $app_name;format="snake, lower"$_$class_name;format="snake, lower"$ ($model_fields$, created_at, id, user_id)
+      insert into $table_name$ ($model_fields$, created_at, id, user_id)
       values
       (
         /*
         \${$model_fields$},
         */
         \${Date.now},
-        \${$class_name;format="Camel"$Id.random},
+        \${$CamelCase$Id.random},
         \${userId.id}
       );
-    """.update.withUniqueGeneratedKeys[$class_name;format="Camel"$]($model_fields$, "created_at", "updated_at", "id", "user_id").transact(XA)
+    """.update.withUniqueGeneratedKeys[$CamelCase$]($model_fields$, "created_at", "updated_at", "id", "user_id").transact(XA)
 
   ATTENTION
-  def update[F[_]: Sync]($class_name;format="camel"$: $class_name;format="Camel"$, userId: UserId)(implicit XA: Transactor[F]): F[$class_name;format="Camel"$] =
+  def update[F[_]: Sync]($camelCase$: $CamelCase$, userId: UserId)(implicit XA: Transactor[F]): F[$CamelCase$] =
     sql"""
-      update $app_name;format="snake, lower"$_$class_name;format="snake, lower"$ set
+      update $table_name$ set
         /*
           columns = \${$model_fields$}
         */
         updated_at = \${Date.now}
-      where id = \${$class_name;format="camel"$.id}
+      where id = \${$camelCase$.id}
       and user_id = \${userId.id}
-    """.update.withUniqueGeneratedKeys[$class_name;format="Camel"$]($model_fields$, "created_at", "updated_at", "id", "user_id").transact(XA)
+    """.update.withUniqueGeneratedKeys[$CamelCase$]($model_fields$, "created_at", "updated_at", "id", "user_id").transact(XA)
 
-  def destroy[F[_]: Sync](id: Option[$class_name;format="Camel"$Id], userId: UserId)(implicit XA: Transactor[F]): F[Int] =
-    sql"""delete from $app_name;format="snake, lower"$_$class_name;format="snake, lower"$ where id = \${id} and user_id = \${userId.id}""".update.run.transact(XA)
+  def destroy[F[_]: Sync](id: Option[$CamelCase$Id], userId: UserId)(implicit XA: Transactor[F]): F[Int] =
+    sql"""delete from $table_name$ where id = \${id} and user_id = \${userId.id}""".update.run.transact(XA)
 }
 
-trait $class_name;format="Camel"$Views {
-  private def getUrlOrIndex(id: Option[$class_name;format="Camel"$Id], s: $class_name;format="Camel"$Id => String) =
+trait $CamelCase$Views {
+  private def getUrlOrIndex(id: Option[$CamelCase$Id], s: $CamelCase$Id => String) =
     id.map(s).getOrElse(indexUrl)
 
-  def index($class_name;format="camel"$s: List[$class_name;format="Camel"$]): Html = views.html.$class_name;format="snake, lower"$.index($class_name;format="camel"$s)
-  def indexUrl: String = s"""/$class_name;format="normalize"$s"""
-  def show($class_name;format="camel"$: $class_name;format="Camel"$): Html = views.html.$class_name;format="snake, lower"$.show($class_name;format="camel"$)
-  def showUrl(maybeId: Option[$class_name;format="Camel"$Id]): String =
-    getUrlOrIndex(maybeId, id => s"""/$class_name;format="normalize"$/\${id.value.toString}""")
-  def add: Html = views.html.$class_name;format="snake, lower"$.add()
-  def addUrl: String = s"""/$class_name;format="normalize"$/add"""
-  def createUrl: String = s"""/$class_name;format="normalize"$/create"""
-  def edit($class_name;format="camel"$: $class_name;format="Camel"$): Html = views.html.$class_name;format="snake, lower"$.edit($class_name;format="camel"$)
-  def editUrl(maybeId: Option[$class_name;format="Camel"$Id]): String =
-    getUrlOrIndex(maybeId, id => s"""/$class_name;format="normalize"$/\${id.value.toString}/edit""")
-  def updateUrl: String = s"""/$class_name;format="normalize"$/update"""
-  def destroyUrl(maybeId: Option[$class_name;format="Camel"$Id]): String = showUrl(maybeId)
+  def index($camelCase$s: List[$CamelCase$]): Html = views.html.$snake_case$.index($camelCase$s)
+  def indexUrl: String = s"""/$normal-name$s"""
+  def show($camelCase$: $CamelCase$): Html = views.html.$snake_case$.show($camelCase$)
+  def showUrl(maybeId: Option[$CamelCase$Id]): String =
+    getUrlOrIndex(maybeId, id => s"""/$normal-name$/\${id.value.toString}""")
+  def add: Html = views.html.$snake_case$.add()
+  def addUrl: String = s"""/$normal-name$/add"""
+  def createUrl: String = s"""/$normal-name$/create"""
+  def edit($camelCase$: $CamelCase$): Html = views.html.$snake_case$.edit($camelCase$)
+  def editUrl(maybeId: Option[$CamelCase$Id]): String =
+    getUrlOrIndex(maybeId, id => s"""/$normal-name$/\${id.value.toString}/edit""")
+  def updateUrl: String = s"""/$normal-name$/update"""
+  def destroyUrl(maybeId: Option[$CamelCase$Id]): String = showUrl(maybeId)
 }
