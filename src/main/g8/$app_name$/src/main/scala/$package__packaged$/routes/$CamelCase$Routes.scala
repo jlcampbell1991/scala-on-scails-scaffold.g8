@@ -25,15 +25,15 @@ object $CamelCase$Routes extends Routes {
           $camelCase$s <- $CamelCase$.all(userId)
           response <- Ok($CamelCase$.index($camelCase$s))
         } yield response
-        case GET -> Root / "$normalized$" / id => for {
-          $camelCase$ <- $CamelCase$.find($CamelCase$Id(id), userId)
-          response <- Ok($camelCase$.show)
-        } yield response
         case GET -> Root / "$normalized$" / "add" => Ok($CamelCase$.add)
         case req @ POST -> Root / "$normalized$" / "create" => for {
           form <- req.as[UrlForm]
           $camelCase$ <- $CamelCase$.fromUrlForm(form).flatMap(_.save(userId))
           response <- Redirect($camelCase$.showUrl)
+        } yield response
+        case GET -> Root / "$normalized$" / id => for {
+          $camelCase$ <- $CamelCase$.find($CamelCase$Id(id), userId)
+          response <- Ok($camelCase$.show)
         } yield response
         case GET -> Root / "$normalized$" / id / "edit" => for {
           $camelCase$ <- $CamelCase$.find($CamelCase$Id(id), userId)
