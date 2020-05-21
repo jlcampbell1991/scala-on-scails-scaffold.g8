@@ -8,27 +8,37 @@ import org.http4s.twirl._
 import org.http4s.UrlForm
 
 final class $CamelCase$RoutesTest extends BaseTest {
-  ATTENTION
   import DBDriver.XA
+
   val userId: UserId = UserId.random
+
+  val user: User = User("jambell", Password("pass123"), userId).save[IO].unsafeRunSync
+
+  val cookie: RequestCookie = Session.requestCookie(user)
+
+  ATTENTION
+
   val $camelCase$Form: UrlForm = UrlForm($model_fields$)
-  val $camelCase$: $CamelCase$ = $CamelCase$($model_fields$).save[IO](userId).unsafeRunSync
+
+  def $camelCase$: $CamelCase$ =
+    $CamelCase$($model_fields$).save[IO](userId).unsafeRunSync
 
   """GET -> Root / "$normalized$s"""" in {
     check[String](
       service.orNotFound
         .run(
-          Request(method = Method.GET, uri = Uri.unsafeFromString($CamelCase$.indexUrl))
+          Request(method = Method.GET, uri = Uri.unsafeFromString($CamelCase$.indexUrl)).addCookie(cookie)
         ),
       Status.Ok,
       None
     )
   }
   """GET -> Root / "$normalized$/ id"""" in {
+    println($camelCase$.updateUrl)
     check[String](
       service.orNotFound
         .run(
-          Request(method = Method.GET, uri = Uri.unsafeFromString($camelCase$.showUrl))
+          Request(method = Method.GET, uri = Uri.unsafeFromString($camelCase$.showUrl)).addCookie(cookie)
         ),
       Status.Ok,
       None
@@ -38,7 +48,7 @@ final class $CamelCase$RoutesTest extends BaseTest {
     check[String](
       service.orNotFound
         .run(
-          Request(method = Method.GET, uri = Uri.unsafeFromString($CamelCase$.addUrl))
+          Request(method = Method.GET, uri = Uri.unsafeFromString($CamelCase$.addUrl)).addCookie(cookie)
         ),
       Status.Ok,
       None
@@ -48,9 +58,11 @@ final class $CamelCase$RoutesTest extends BaseTest {
     check[String](
       service.orNotFound
         .run(
-          Request(method = Method.POST, uri = Uri.unsafeFromString($CamelCase$.createUrl)).withEntity(
-            $camelCase$Form
-          )
+          Request(method = Method.POST, uri = Uri.unsafeFromString($CamelCase$.createUrl))
+            .addCookie(cookie)
+            .withEntity(
+              $camelCase$Form
+            )
         ),
       Status.SeeOther,
       None
@@ -60,7 +72,7 @@ final class $CamelCase$RoutesTest extends BaseTest {
     check[String](
       service.orNotFound
         .run(
-          Request(method = Method.GET, uri = Uri.unsafeFromString($camelCase$.editUrl))
+          Request(method = Method.GET, uri = Uri.unsafeFromString($camelCase$.editUrl)).addCookie(cookie)
         ),
       Status.Ok,
       None
@@ -70,9 +82,11 @@ final class $CamelCase$RoutesTest extends BaseTest {
     check[String](
       service.orNotFound
         .run(
-          Request(method = Method.PUT, uri = Uri.unsafeFromString($CamelCase$.updateUrl)).withEntity(
-            $camelCase$Form
-          )
+          Request(method = Method.PUT, uri = Uri.unsafeFromString($camelCase$.updateUrl))
+            .addCookie(cookie)
+            .withEntity(
+              $camelCase$Form
+            )
         ),
       Status.SeeOther,
       None
@@ -82,13 +96,14 @@ final class $CamelCase$RoutesTest extends BaseTest {
     check[String](
       service.orNotFound
         .run(
-          Request(method = Method.DELETE, uri = Uri.unsafeFromString($camelCase$.destroyUrl)).withEntity(
-            $camelCase$Form
-          )
+          Request(method = Method.DELETE, uri = Uri.unsafeFromString($camelCase$.destroyUrl))
+            .addCookie(cookie)
+            .withEntity(
+              $camelCase$Form
+            )
         ),
       Status.SeeOther,
       None
     )
   }
-
 }
