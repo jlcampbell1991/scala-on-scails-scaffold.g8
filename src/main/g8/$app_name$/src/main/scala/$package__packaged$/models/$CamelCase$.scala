@@ -42,10 +42,11 @@ final case class $CamelCase$(
 }
 
 object $CamelCase$ extends $CamelCase$Queries with $CamelCase$Views {
-  def fromUrlForm[F[_]: Sync](form: UrlForm): F[$CamelCase$] =
-    for {
-      name <- getValueOrRaiseError[F](form, "name")
-    } yield $CamelCase$(name, None, None, None, None)
+  $CamelCase$FromUrlForm
+  // def fromUrlForm[F[_]: Sync](form: UrlForm): F[$CamelCase$] =
+  //   for {
+  //     name <- getValueOrRaiseError[F](form, "name")
+  //   } yield $CamelCase$(name, None, None, None, None)
 }
 
 trait $CamelCase$Queries extends Model {
