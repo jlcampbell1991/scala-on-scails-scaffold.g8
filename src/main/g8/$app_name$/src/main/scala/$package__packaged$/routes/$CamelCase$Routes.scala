@@ -32,7 +32,7 @@ object $CamelCase$Routes extends Routes {
         case GET -> Root / "$normalized$" / "add" => Ok($CamelCase$.add)
         case req @ POST -> Root / "$normalized$" / "create" => for {
           form <- req.as[UrlForm]
-          $camelCase$ <- $CamelCase$.fromUrlForm(form).flaMap(_.save(userId))
+          $camelCase$ <- $CamelCase$.fromUrlForm(form).flatMap(_.save(userId))
           response <- Redirect($camelCase$.showUrl)
         } yield response
         case GET -> Root / "$normalized$" / id / "edit" => for {
