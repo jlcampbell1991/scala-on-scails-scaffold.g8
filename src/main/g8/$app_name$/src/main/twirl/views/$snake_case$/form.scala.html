@@ -4,11 +4,7 @@
 @views.html.layouts.application(title) {
   <h1 class="formTitle">@title</h1>
   <form action="/@action" method="@method" id="$camelCase$Form">
-    @ATTENTION
-    <!--
-    Age: <input type="number" name="age" value="@$camelCase$.age"></input><br>
-    Gender: <input type="checkbox" name="gender" value="@$camelCase$.gender"></input><br>
-    -->
+    @$CamelCase$Form
     <input type="submit" value="Submit" id="formButton">
   </form>
 }

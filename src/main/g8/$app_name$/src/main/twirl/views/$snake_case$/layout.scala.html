@@ -5,16 +5,14 @@
   <table>
     <tr>
       <th>ID</th>
-      @ATTENTION
-      <!-- $model_fields$ -->
+      @$CamelCase$THs
       <th>Created</th>
       <th>Last Updated</th>
     </tr>
   @$camelCase$s.map{ $camelCase$ =>
     <tr>
       <td><a href="@$camelCase$.showUrl">@$camelCase$.id</a></td>
-      @ATTENTION
-      <!-- $model_fields$ -->
+      @@$CamelCase$TDs
       <td>@$camelCase$.createdAt</td>
       <td>@$camelCase$.updatedAt</td>
       <td><a href="@$camelCase$.editUrl">Edit</a></td>

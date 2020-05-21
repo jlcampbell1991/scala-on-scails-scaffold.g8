@@ -59,28 +59,28 @@ trait $CamelCase$Queries extends Model {
      select * from test_app_round_spiral where id = \${$camelCase$Id.value} and user_id = \${userId.id}
     """.query[$CamelCase$].unique.transact(XA)
 
-  ATTENTION
-  def create[F[_]: Sync]($camelCase$: $CamelCase$, userId: UserId)(implicit XA: Transactor[F]): F[$CamelCase$] =
-    sql"""
-      insert into test_app_round_spiral (name, created_at, id, user_id)
-      values
-      (
-        \${$model_fields$},
-        \${Date.now},
-        \${$CamelCase$Id.random},
-        \${userId.id}
-      );
-    """.update.withUniqueGeneratedKeys[$CamelCase$]("name", "created_at", "updated_at", "id", "user_id").transact(XA)
+  $CamelCase$.create
+  // def create[F[_]: Sync]($camelCase$: $CamelCase$, userId: UserId)(implicit XA: Transactor[F]): F[$CamelCase$] =
+  //   sql"""
+  //     insert into test_app_round_spiral ($model_fields$, created_at, id, user_id)
+  //     values
+  //     (
+  //       \${$model_fields$},
+  //       \${Date.now},
+  //       \${$CamelCase$Id.random},
+  //       \${userId.id}
+  //     );
+  //   """.update.withUniqueGeneratedKeys[$CamelCase$]($model_fields$, "created_at", "updated_at", "id", "user_id").transact(XA)
 
-  ATTENTION
-  def update[F[_]: Sync]($camelCase$: $CamelCase$, userId: UserId)(implicit XA: Transactor[F]): F[$CamelCase$] =
-    sql"""
-      update test_app_round_spiral set
-          column = \${$model_fields$},
-        updated_at = \${Date.now}
-      where id = \${$camelCase$.id.map(_.value)}
-      and user_id = \${userId.id}
-    """.update.withUniqueGeneratedKeys[$CamelCase$]("name", "created_at", "updated_at", "id", "user_id").transact(XA)
+  $CamelCase$.update
+  // def update[F[_]: Sync]($camelCase$: $CamelCase$, userId: UserId)(implicit XA: Transactor[F]): F[$CamelCase$] =
+  //   sql"""
+  //     update test_app_round_spiral set
+  //         column = \${$model_fields$},
+  //       updated_at = \${Date.now}
+  //     where id = \${$camelCase$.id.map(_.value)}
+  //     and user_id = \${userId.id}
+  //   """.update.withUniqueGeneratedKeys[$CamelCase$]($model_fields$, "created_at", "updated_at", "id", "user_id").transact(XA)
 
   def destroy[F[_]: Sync](id: Option[$CamelCase$Id], userId: UserId)(implicit XA: Transactor[F]): F[Int] =
     sql"""delete from test_app_round_spiral where id = \${id} and user_id = \${userId.id}""".update.run.transact(XA)
