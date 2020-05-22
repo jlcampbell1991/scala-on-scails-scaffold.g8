@@ -16,11 +16,7 @@ final class $CamelCase$RoutesTest extends BaseTest {
 
   val cookie: RequestCookie = Session.requestCookie(user)
 
-  $camelCase$UrlForm
-  // val $camelCase$Form: UrlForm = UrlForm($model_fields$)
-  $camelCase$Instance
-  // def $camelCase$: $CamelCase$ =
-  //   $CamelCase$($model_fields$).save[IO](userId).unsafeRunSync
+$UPPER_SNAKE_CASE$_TEST
 
   """GET -> Root / "$normalized$s"""" in {
     check[String](
