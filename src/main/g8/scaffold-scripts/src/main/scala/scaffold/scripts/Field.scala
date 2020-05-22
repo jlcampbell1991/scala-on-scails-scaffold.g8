@@ -27,53 +27,53 @@ case object FieldInt extends FieldType {
   def toScala: String = "Int"
   def toSql: String = "INTEGER"
   def toFormElement(key: String): String =
-    s"""${key}: <input type="number" name="${key}">"""
+    s"""\${key}: <input type="number" name="\${key}">"""
   def toTestDefault: String = "1"
 }
 case object FieldString extends FieldType {
   def toScala: String = "String"
   def toSql: String = "VARCHAR"
   def toFormElement(key: String): String =
-    s"""${key}: <input type="text" name="${key}">"""
-  def toTestDefault: String = s""""${java.util.UUID.randomUUID.toString}""""
+    s"""\${key}: <input type="text" name="\${key}">"""
+  def toTestDefault: String = s""""\${java.util.UUID.randomUUID.toString}""""
 }
 case object FieldBoolean extends FieldType {
   def toScala: String = "Boolean"
   def toSql: String = "BOOLEAN"
   def toFormElement(key: String): String =
-    s"""${key}: <input type="checkbox" name="${key}">"""
+    s"""\${key}: <input type="checkbox" name="\${key}">"""
   def toTestDefault: String = "true"
 }
 case object FieldDouble extends FieldType {
   def toScala: String = "Double"
   def toSql: String = "DOUBLE PRECISION"
   def toFormElement(key: String): String =
-    s"""${key}: <input type="number" name="${key}" step="0.01">"""
+    s"""\${key}: <input type="number" name="\${key}" step="0.01">"""
   def toTestDefault: String = "1.0"
 }
 case object FieldUUID extends FieldType {
   def toScala: String = "UUID"
   def toSql: String = "VARCHAR"
   def toFormElement(key: String): String =
-    s"""${key}: <input type="text" name="${key}">"""
+    s"""\${key}: <input type="text" name="\${key}">"""
   def toTestDefault: String = "java.util.UUID.randomUUID"
 }
 case object FieldDate extends FieldType {
   def toScala: String = "Date"
   def toSql: String = "TIMESTAMP"
   def toFormElement(key: String): String =
-    s"""${key}: <input type="date" name="${key}">"""
+    s"""\${key}: <input type="date" name="\${key}">"""
   def toTestDefault: String = "Date.now"
 }
 case class FieldOption(fieldType: FieldType) extends FieldType {
-  def toScala: String = s"""Option[${fieldType.toScala}]"""
+  def toScala: String = s"""Option[\${fieldType.toScala}]"""
   def toSql: String = fieldType.toSql
   def toFormElement(key: String): String = fieldType.toFormElement(key)
-  def toTestDefault: String = s"""Some(${fieldType.toTestDefault})"""
+  def toTestDefault: String = s"""Some(\${fieldType.toTestDefault})"""
 }
 final case class Field(key: String, value: FieldType) {
-  def toScala: String = s"""${key}: ${value.toScala}"""
-  def toSql: String = s"""${key} ${value.toSql}"""
+  def toScala: String = s"""\${key}: \${value.toScala}"""
+  def toSql: String = s"""\${key} \${value.toSql}"""
   def toFormElement: String = value.toFormElement(key)
 }
 object Fields extends ScaffoldWriter {
@@ -87,37 +87,37 @@ object Fields extends ScaffoldWriter {
     asList.foldLeft("")((str, field) => str ++ addend(field)).replaceFirst(replace, "")
 
   def toSql: String =
-    foldLeft(field => s"""\n      ${field.toSql},""")("\n")
+    foldLeft(field => s"""\n      \${field.toSql},""")("\n")
 
   def toSqlCreate: String =
-    foldLeft(field => s"""\n        $${${camelCase}.${field.key}},""")("\n        ")
+    foldLeft(field => s"""\n        \$\${\${camelCase}.\${field.key}},""")("\n        ")
 
   def toSqlUpdate: String =
-    foldLeft(field => s"""\n        ${field.key} = $${${camelCase}.${field.key}},""")("\n        ")
+    foldLeft(field => s"""\n        \${field.key} = \$\${\${camelCase}.\${field.key}},""")("\n        ")
 
   def toUrlForComp: String =
     foldLeft(field =>
-      s"""\n      ${field.key} <- getValueOrRaiseError[F, ${field.value.toScala}](form, "${field.key}")"""
+      s"""\n      \${field.key} <- getValueOrRaiseError[F, \${field.value.toScala}](form, "\${field.key}")"""
     )("\n")
 
   def toKeys: String =
-    foldLeft(field => s""", ${field.key}""")(", ")
+    foldLeft(field => s""", \${field.key}""")(", ")
 
   def toKeysQuoted: String =
-    foldLeft(field => s""", "${field.key}"""")(", ")
+    foldLeft(field => s""", "\${field.key}"""")(", ")
 
   def toLayoutTds: String =
-    foldLeft(field => s"""\n      <td>@${camelCase}.${field.key}</td>""")("\n")
+    foldLeft(field => s"""\n      <td>@\${camelCase}.\${field.key}</td>""")("\n")
 
   def toLayoutTds: String =
-    foldLeft(field => s"""\n      <th>@${field.key}</th>""")("\n")
+    foldLeft(field => s"""\n      <th>@\${field.key}</th>""")("\n")
 
   def toFormElements: String =
-    foldLeft(field => s"""\n    ${field.toFormElement}""")("\n")
+    foldLeft(field => s"""\n    \${field.toFormElement}""")("\n")
 
   def toTestDefaults: String =
-    foldLeft(field => s""", ${field.value.toTestDefault}""")(", ")
+    foldLeft(field => s""", \${field.value.toTestDefault}""")(", ")
 
   def toUrlFormDefaults: String =
-    foldLeft(field => s""", ("${field.key}", ${field.value.toTestDefault})""")(", ")
+    foldLeft(field => s""", ("\${field.key}", \${field.value.toTestDefault})""")(", ")
 }
