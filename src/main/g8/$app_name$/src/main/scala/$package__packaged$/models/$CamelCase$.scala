@@ -48,40 +48,40 @@ $UPPER_SNAKE_CASE$_FROM_URL_FORM
 trait $CamelCase$Queries extends Model {
   def all[F[_]: Sync](userId: UserId)(implicit XA: Transactor[F]): F[List[$CamelCase$]] =
     sql"""
-      select * from test_app_round_spiral where user_id = \${userId}
+      select * from ${table_name} where user_id = \${userId}
     """.query[$CamelCase$].to[List].transact(XA)
 
   def find[F[_]: Sync]($camelCase$Id: $CamelCase$Id, userId: UserId)(implicit XA: Transactor[F]): F[$CamelCase$] =
     sql"""
-     select * from test_app_round_spiral where id = \${$camelCase$Id.value} and user_id = \${userId.id}
+     select * from ${table_name} where id = \${$camelCase$Id.value} and user_id = \${userId.id}
     """.query[$CamelCase$].unique.transact(XA)
 $UPPER_SNAKE_CASE$_CREATE
 $UPPER_SNAKE_CASE$_UPDATE
 
   def destroy[F[_]: Sync](id: Option[$CamelCase$Id], userId: UserId)(implicit XA: Transactor[F]): F[Int] =
-    sql"""delete from test_app_round_spiral where id = \${id} and user_id = \${userId.id}""".update.run.transact(XA)
+    sql"""delete from ${table_name} where id = \${id} and user_id = \${userId.id}""".update.run.transact(XA)
 }
 
 trait $CamelCase$Views {
   private def getUrlOrIndex(id: Option[$CamelCase$Id], s: $CamelCase$Id => String) =
     id.map(s).getOrElse(indexUrl)
 
-  def index($camelCase$s: List[$CamelCase$]): Html = views.html.round_spiral.index($camelCase$s)
+  def index($camelCase$s: List[$CamelCase$]): Html = views.html.$snake_case$.index($camelCase$s)
 
   def indexUrl: String = s"""/$normalized$s"""
 
-  def show($camelCase$: $CamelCase$): Html = views.html.round_spiral.show($camelCase$)
+  def show($camelCase$: $CamelCase$): Html = views.html.$snake_case$.show($camelCase$)
 
   def showUrl(maybeId: Option[$CamelCase$Id]): String =
     getUrlOrIndex(maybeId, id => s"""/$normalized$/\${id.value.toString}""")
 
-  def add: Html = views.html.round_spiral.add()
+  def add: Html = views.html.$snake_case$.add()
 
   def addUrl: String = s"""/$normalized$/add"""
 
   def createUrl: String = s"""/$normalized$/create"""
 
-  def edit($camelCase$: $CamelCase$): Html = views.html.round_spiral.edit($camelCase$)
+  def edit($camelCase$: $CamelCase$): Html = views.html.$snake_case$.edit($camelCase$)
 
   def editUrl(maybeId: Option[$CamelCase$Id]): String =
     getUrlOrIndex(maybeId, id => s"""/$normalized$/\${id.value.toString}/edit""")

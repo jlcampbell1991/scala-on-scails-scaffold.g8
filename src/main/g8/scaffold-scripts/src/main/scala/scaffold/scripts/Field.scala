@@ -8,8 +8,8 @@ sealed trait FieldType {
 }
 object FieldType {
   private def regex(s: String): String = {
-    val _regex = s"""option\\[(.*)\\]""".r
-    _regex.findFirstIn(s).map(_.replaceAll("\\[", "").replaceAll("\\]", "")).getOrElse("string")
+    val _regex = s"""option\\\\[(.*)\\\\]""".r
+    _regex.findFirstIn(s).map(_.replaceAll("\\\\[", "").replaceAll("\\\\]", "")).getOrElse("string")
   }
 
   def fromString(s: String): FieldType = s.toLowerCase match {
@@ -97,7 +97,7 @@ object Fields extends ScaffoldWriter {
 
   def toUrlForComp: String =
     foldLeft(field =>
-      s"""\n      \${field.key} <- getValueOrRaiseError[F, \${field.value.toScala}](form, "\${field.key}")"""
+      s"""\n      \${field.key} <- getValueOrRaiseError[F](form, "\${field.key}")"""
     )("\n")
 
   def toKeys: String =
@@ -109,8 +109,8 @@ object Fields extends ScaffoldWriter {
   def toLayoutTds: String =
     foldLeft(field => s"""\n      <td>@\${camelCase}.\${field.key}</td>""")("\n")
 
-  def toLayoutTds: String =
-    foldLeft(field => s"""\n      <th>@\${field.key}</th>""")("\n")
+  def toLayoutThs: String =
+    foldLeft(field => s"""\n      <th>\${field.key.capitalize}</th>""")("\n")
 
   def toFormElements: String =
     foldLeft(field => s"""\n    \${field.toFormElement}""")("\n")

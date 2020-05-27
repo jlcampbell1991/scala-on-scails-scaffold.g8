@@ -8,11 +8,11 @@ object Test extends ScaffoldWriter {
 
   val \${camelCase}Form: UrlForm = UrlForm(\${Fields.toUrlFormDefaults})
 
-  val \${camelCase}: \${CamelCase} = \${CamelCase}(\${Fields.toTestDefaults}, None, None, Some(\${CamelCase}.Id.random), Some(userId)).save[IO](userId).unsafeRunSync"""
+  val \${camelCase}: \${CamelCase} = \${CamelCase}(\${Fields.toTestDefaults}, None, None, Some(\${CamelCase}Id.random), Some(userId)).save[IO](userId).unsafeRunSync"""
 
   def update = {
     replace(
-      s"./$app_name$/src/test/scala/$path$/RoutesTest.scala",
+      s"./$app_name$/src/test/scala/$path$/${CamelCase}RoutesTest.scala",
       s"\${UPPER_SNAKE_CASE}_TEST",
       text
     )

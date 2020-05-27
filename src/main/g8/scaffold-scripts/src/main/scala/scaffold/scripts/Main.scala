@@ -1,5 +1,5 @@
 package scaffold.scripts
 
 object Main extends App {
-  $CamelCase$Writer.update
+  ScaffoldWriter.update
 }

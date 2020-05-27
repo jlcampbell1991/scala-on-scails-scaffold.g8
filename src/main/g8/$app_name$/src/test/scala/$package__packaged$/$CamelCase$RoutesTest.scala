@@ -12,10 +12,6 @@ final class $CamelCase$RoutesTest extends BaseTest {
 
   val userId: UserId = UserId.random
 
-  val user: User = User("jambell", Password("pass123"), userId).save[IO].unsafeRunSync
-
-  val cookie: RequestCookie = Session.requestCookie(user)
-
 $UPPER_SNAKE_CASE$_TEST
 
   """GET -> Root / "$normalized$s"""" in {
