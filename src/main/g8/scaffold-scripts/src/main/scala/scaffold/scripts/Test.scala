@@ -12,7 +12,7 @@ object Test extends ScaffoldWriter {
 
   def update = {
     replace(
-      s"./$app_name$/src/test/scala/$path$/${CamelCase}RoutesTest.scala",
+      s"./$app_name$/src/test/scala/$path$/\${CamelCase}RoutesTest.scala",
       s"\${UPPER_SNAKE_CASE}_TEST",
       text
     )
