@@ -10,7 +10,7 @@ object Create extends ScaffoldWriter {
         \${Fields.toSqlCreate}""" + """
         \${Date.now},
         \${""" + CamelCase + """Id .random},
-        \\${userId.id}""" + s"""
+        \${userId.id}""" + s"""
       );
     \${tripQuotes}.update.withUniqueGeneratedKeys[\${CamelCase}](\${Fields.toKeysQuoted}, "created_at", "updated_at", "id", "user_id").transact(XA)"""
 
