@@ -48,7 +48,7 @@ $UPPER_SNAKE_CASE$_FROM_URL_FORM
 trait $CamelCase$Queries extends Model {
   def all[F[_]: Sync](userId: UserId)(implicit XA: Transactor[F]): F[List[$CamelCase$]] =
     sql"""
-      select * from \\${table_name} where user_id = \${userId}
+      select * from \${table_name} where user_id = \${userId}
     """.query[$CamelCase$].to[List].transact(XA)
 
   def find[F[_]: Sync]($camelCase$Id: $CamelCase$Id, userId: UserId)(implicit XA: Transactor[F]): F[$CamelCase$] =
