@@ -48,18 +48,18 @@ $UPPER_SNAKE_CASE$_FROM_URL_FORM
 trait $CamelCase$Queries extends Model {
   def all[F[_]: Sync](userId: UserId)(implicit XA: Transactor[F]): F[List[$CamelCase$]] =
     sql"""
-      select * from ${table_name} where user_id = \${userId}
+      select * from \\${table_name} where user_id = \${userId}
     """.query[$CamelCase$].to[List].transact(XA)
 
   def find[F[_]: Sync]($camelCase$Id: $CamelCase$Id, userId: UserId)(implicit XA: Transactor[F]): F[$CamelCase$] =
     sql"""
-     select * from ${table_name} where id = \${$camelCase$Id.value} and user_id = \${userId.id}
+     select * from \${table_name} where id = \${$camelCase$Id.value} and user_id = \${userId.id}
     """.query[$CamelCase$].unique.transact(XA)
 $UPPER_SNAKE_CASE$_CREATE
 $UPPER_SNAKE_CASE$_UPDATE
 
   def destroy[F[_]: Sync](id: Option[$CamelCase$Id], userId: UserId)(implicit XA: Transactor[F]): F[Int] =
-    sql"""delete from ${table_name} where id = \${id} and user_id = \${userId.id}""".update.run.transact(XA)
+    sql"""delete from \${table_name} where id = \${id} and user_id = \${userId.id}""".update.run.transact(XA)
 }
 
 trait $CamelCase$Views {
