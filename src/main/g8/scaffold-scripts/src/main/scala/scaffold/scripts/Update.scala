@@ -7,7 +7,7 @@ object Update extends ScaffoldWriter {
       update test_app_round_spiral set
         \${Fields.toSqlUpdate}
         updated_at = \$\${Date.now}
-      where id = \$\${${camelCase}Id.id.map(_.value)}
+      where id = \$\${$camelCase$Id.id.map(_.value)}
       and user_id = \$\${userId.id}
     \${tripQuotes}.update.withUniqueGeneratedKeys[\${CamelCase}](\${Fields.toKeysQuoted}, "created_at", "updated_at", "id", "user_id").transact(XA)"""
 
