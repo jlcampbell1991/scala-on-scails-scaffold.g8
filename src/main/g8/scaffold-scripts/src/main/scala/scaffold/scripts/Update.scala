@@ -4,7 +4,7 @@ object Update extends ScaffoldWriter {
   def text: String = s"""
   def update[F[_]: Sync](\${camelCase}: \${CamelCase}, userId: UserId)(implicit XA: Transactor[F]): F[\${CamelCase}] =
     sql\${tripQuotes}
-      update ${table_name} set
+      update \${table_name} set
         \${Fields.toSqlUpdate}
         updated_at = \$\${Date.now}
       where id = \$\${\${camelCase}.id.map(_.value)}
