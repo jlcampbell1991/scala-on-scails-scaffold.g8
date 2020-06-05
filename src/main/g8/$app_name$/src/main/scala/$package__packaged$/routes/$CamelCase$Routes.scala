@@ -38,7 +38,7 @@ object $CamelCase$Routes extends Routes {
             $camelCase$ <- $CamelCase$.find($CamelCase$Id(id), userId)
             response <- Ok($camelCase$.edit)
           } yield response
-        case req @ PUT -> Root / "$normalized$" / id / "update" =>
+        case req @ POST -> Root / "$normalized$" / id / "update" =>
           for {
             form <- req.as[UrlForm]
             $camelCase$ <- $CamelCase$
