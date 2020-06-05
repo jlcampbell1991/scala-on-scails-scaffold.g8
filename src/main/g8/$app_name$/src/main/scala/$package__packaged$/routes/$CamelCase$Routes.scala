@@ -7,13 +7,6 @@ import org.http4s._
 import org.http4s.twirl._
 import doobie._
 
-import cats.implicits._
-import cats.effect.Sync
-import org.http4s.dsl.Http4sDsl
-import org.http4s._
-import org.http4s.twirl._
-import doobie._
-
 object $CamelCase$Routes extends Routes {
   def publicRoutes[F[_]: Sync: Transactor](implicit dsl: Http4sDsl[F]): HttpRoutes[F] =
     HttpRoutes.empty
