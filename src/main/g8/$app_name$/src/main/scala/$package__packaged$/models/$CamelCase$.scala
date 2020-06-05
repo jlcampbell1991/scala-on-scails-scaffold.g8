@@ -34,7 +34,7 @@ final case class $CamelCase$(
 
   def edit: Html = $CamelCase$.edit(this)
 
-  def editUrl: String = $CamelCase$.showUrl(this.id)
+  def editUrl: String = $CamelCase$.editUrl(this.id)
 
   def updateUrl: String = $CamelCase$.updateUrl(this.id)
 
