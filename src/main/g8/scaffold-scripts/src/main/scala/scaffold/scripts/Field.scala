@@ -1,5 +1,7 @@
 package scaffold.scripts
 
+// TODO: have this extends ScaffoldWriter so we can have class name and then
+// insert default value for toFormElement
 sealed trait FieldType {
   def toScala: String
   def toSql: String

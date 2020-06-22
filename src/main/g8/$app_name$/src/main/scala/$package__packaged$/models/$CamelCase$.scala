@@ -41,11 +41,11 @@ final case class $CamelCase$(
   def destroyUrl: String = $CamelCase$.destroyUrl(this.id)
 }
 
-object $CamelCase$ extends $CamelCase$Queries with $CamelCase$Views {
+object $CamelCase$ extends Model with $CamelCase$Queries with $CamelCase$Views {
 $UPPER_SNAKE_CASE$_FROM_URL_FORM
 }
 
-trait $CamelCase$Queries extends Model {
+trait $CamelCase$Queries extends Queries {
   def all[F[_]: Sync](userId: UserId)(implicit XA: Transactor[F]): F[List[$CamelCase$]] =
     sql"""
       select * from $table_name$ where user_id = \${userId}
@@ -62,7 +62,7 @@ $UPPER_SNAKE_CASE$_UPDATE
     sql"""delete from $table_name$ where id = \${id} and user_id = \${userId.id}""".update.run.transact(XA)
 }
 
-trait $CamelCase$Views {
+trait $CamelCase$Views extends Views {
   private def getUrlOrIndex(id: Option[$CamelCase$Id], s: $CamelCase$Id => String) =
     id.map(s).getOrElse(indexUrl)
 
