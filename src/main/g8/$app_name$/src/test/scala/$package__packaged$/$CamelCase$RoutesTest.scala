@@ -69,11 +69,11 @@ $UPPER_SNAKE_CASE$_TEST
       None
     )
   }
-  """PUT  -> Root / "$normalized$" / id / "update"""" in {
+  """POST  -> Root / "$normalized$" / id / "update"""" in {
     check[String](
       service.orNotFound
         .run(
-          Request(method = Method.PUT, uri = Uri.unsafeFromString($camelCase$.updateUrl))
+          Request(method = Method.POST, uri = Uri.unsafeFromString($camelCase$.updateUrl))
             .addCookie(cookie)
             .withEntity(
               $camelCase$Form
