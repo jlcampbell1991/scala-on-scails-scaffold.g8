@@ -88,5 +88,6 @@ trait $CamelCase$Views extends Views {
   def updateUrl(maybeId: Option[$CamelCase$Id]): String =
     getUrlOrDefault[$CamelCase$Id](maybeId, id => s"""/$normalized$/\${id.value.toString}/update""")
 
-  def destroyUrl(maybeId: Option[$CamelCase$Id]): String = showUrl(maybeId)
+  def destroyUrl(maybeId: Option[$CamelCase$Id]): String =
+    getUrlOrDefault[$CamelCase$Id](maybeId, id => s"""/$normalized$/\${id.value.toString}/destroy""")
 }

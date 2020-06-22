@@ -83,7 +83,7 @@ $UPPER_SNAKE_CASE$_TEST
       None
     )
   }
-  """DELETE -> Root / "$normalized$" / id""" in {
+  """GET -> Root / "$normalized$" / id / "destroy"""" in {
     check[String](
       service.orNotFound
         .run(

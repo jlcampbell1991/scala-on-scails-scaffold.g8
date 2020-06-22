@@ -47,7 +47,7 @@ object $CamelCase$Routes extends Routes {
               .flatMap(_.update(userId))
             response <- Redirect($camelCase$.showUrl)
           } yield response
-        case DELETE -> Root / "$normalized$" / id =>
+        case GET -> Root / "$normalized$" / id / "destroy" =>
           for {
             _ <- $CamelCase$.destroy(Some($CamelCase$Id(id)), userId)
             response <- Redirect($CamelCase$.indexUrl)
