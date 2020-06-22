@@ -87,7 +87,7 @@ $UPPER_SNAKE_CASE$_TEST
     check[String](
       service.orNotFound
         .run(
-          Request(method = Method.DELETE, uri = Uri.unsafeFromString($camelCase$.destroyUrl))
+          Request(method = Method.GET, uri = Uri.unsafeFromString($camelCase$.destroyUrl))
             .addCookie(cookie)
             .withEntity(
               $camelCase$Form
