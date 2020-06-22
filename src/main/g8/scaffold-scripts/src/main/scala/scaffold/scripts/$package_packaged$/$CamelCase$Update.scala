@@ -1,6 +1,6 @@
 package scaffold.scripts
 
-object Update extends ScaffoldWriter {
+object $CamelCase$Update extends ScaffoldWriter {
   def text: String = s"""
   def update[F[_]: Sync](\${camelCase}: \${CamelCase}, userId: UserId)(implicit XA: Transactor[F]): F[\${CamelCase}] =
     sql\${tripQuotes}

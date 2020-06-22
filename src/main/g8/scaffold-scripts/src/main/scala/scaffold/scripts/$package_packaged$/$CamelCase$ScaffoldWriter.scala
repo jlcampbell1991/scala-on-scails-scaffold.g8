@@ -3,7 +3,7 @@ package scaffold.scripts
 import java.io.{File, PrintWriter}
 import scala.io.Source
 
-trait ScaffoldWriter {
+trait $CamelCase$ScaffoldWriter {
   val table_name: String = "$table_name$"
   val model_fields: String = "$model_fields$"
   val camelCase: String = "$camelCase$"

@@ -1,6 +1,6 @@
 package scaffold.scripts
 
-object Create extends ScaffoldWriter {
+object $CamelCase$Create extends ScaffoldWriter {
   val text: String = s"""
   def create[F[_]: Sync](\${camelCase}: \${CamelCase}, userId: UserId)(implicit XA: Transactor[F]): F[\${CamelCase}] =
     sql\${tripQuotes}
