@@ -1,6 +1,6 @@
 package scaffold.scripts
 
-object $CamelCase$Form extends ScaffoldWriter {
+object $CamelCase$Form extends $CamelCase$ScaffoldWriter {
   def update = {
     replace(
       s"./$app_name$/src/main/twirl/views/$snake_case$/form.scala.html",

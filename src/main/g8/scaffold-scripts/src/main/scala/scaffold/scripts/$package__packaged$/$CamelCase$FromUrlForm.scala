@@ -1,6 +1,6 @@
 package scaffold.scripts
 
-object $CamelCase$FromUrlForm extends ScaffoldWriter {
+object $CamelCase$FromUrlForm extends $CamelCase$ScaffoldWriter {
   val text: String =
     s"""
   def fromUrlForm[F[_]: Sync](form: UrlForm): F[\${CamelCase}] =

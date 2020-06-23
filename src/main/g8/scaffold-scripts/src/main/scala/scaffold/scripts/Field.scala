@@ -1,6 +1,6 @@
 package scaffold.scripts
 
-// TODO: have this extends ScaffoldWriter so we can have class name and then
+// TODO: have this extends $CamelCase$ScaffoldWriter so we can have class name and then
 // insert default value for toFormElement
 sealed trait FieldType {
   def toScala: String
@@ -78,7 +78,7 @@ final case class Field(key: String, value: FieldType) {
   def toSql: String = s"""\${key} \${value.toSql}"""
   def toFormElement: String = value.toFormElement(key)
 }
-object Fields extends ScaffoldWriter {
+object Fields extends $CamelCase$ScaffoldWriter {
   private def asList: List[Field] =
     model_fields.split(",").toList.map { s =>
       val _s = s.replaceAll(" ", "").split(":").toList

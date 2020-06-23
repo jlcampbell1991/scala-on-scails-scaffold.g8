@@ -1,6 +1,6 @@
 package scaffold.scripts
 
-object $CamelCase$Test extends ScaffoldWriter {
+object $CamelCase$Test extends $CamelCase$ScaffoldWriter {
   def text = s"""
   val user: User = User(\${FieldString.toTestDefault}, Password(\${FieldString.toTestDefault}), userId).save[IO].unsafeRunSync
 

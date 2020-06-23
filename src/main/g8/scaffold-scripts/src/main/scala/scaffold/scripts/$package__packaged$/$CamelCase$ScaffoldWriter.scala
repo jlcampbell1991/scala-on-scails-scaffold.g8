@@ -39,16 +39,16 @@ trait $CamelCase$ScaffoldWriter {
   lazy val tripQuotes: String = """""""""
 }
 
-object ScaffoldWriter {
+object $CamelCase$ScaffoldWriter {
   def update = {
-    Create.update
-    Database.update
-    Form.update
-    FromUrlForm.update
-    Layout.update
-    Routes.update
-    Table.update
-    Test.update
-    Update.update
+    $CamelCase$Create.update
+    $CamelCase$Database.update
+    $CamelCase$Form.update
+    $CamelCase$FromUrlForm.update
+    $CamelCase$Layout.update
+    $CamelCase$Routes.update
+    $CamelCase$Table.update
+    $CamelCase$Test.update
+    $CamelCase$Update.update
   }
 }
