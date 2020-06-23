@@ -5,7 +5,7 @@ object $CamelCase$Table extends $CamelCase$ScaffoldWriter {
     replace(
       s"./$app_name$/src/main/scala/$path$/db/\${CamelCase}Table.scala",
       s"\${UPPER_SNAKE_CASE}_TABLE",
-      Fields.toSql
+      $CamelCase$Fields.toSql
     )
   }
 }
