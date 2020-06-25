@@ -6,9 +6,9 @@ object $CamelCase$Test extends $CamelCase$ScaffoldWriter {
 
   val cookie: RequestCookie = Session.requestCookie(user)
 
-  val \${camelCase}Form: UrlForm = UrlForm(\${Fields.toUrlFormDefaults})
+  val \${camelCase}Form: UrlForm = UrlForm(\${$CamelCase$Fields.toUrlFormDefaults})
 
-  val \${camelCase}: \${CamelCase} = \${CamelCase}(\${Fields.toTestDefaults}, None, None, Some(\${CamelCase}Id.random), Some(userId)).save[IO](userId).unsafeRunSync"""
+  val \${camelCase}: \${CamelCase} = \${CamelCase}(\${$CamelCase$Fields.toTestDefaults}, None, None, Some(\${CamelCase}Id.random), Some(userId)).save[IO](userId).unsafeRunSync"""
 
   def update = {
     replace(

@@ -5,8 +5,8 @@ object $CamelCase$FromUrlForm extends $CamelCase$ScaffoldWriter {
     s"""
   def fromUrlForm[F[_]: Sync](form: UrlForm): F[\${CamelCase}] =
     for {
-\${Fields.toUrlForComp}
-} yield \${CamelCase}(\${Fields.toKeys}, None, None, None, None)
+\${$CamelCase$Fields.toUrlForComp}
+} yield \${CamelCase}(\${$CamelCase$Fields.toKeys}, None, None, None, None)
 """
   def update = {
     replace(

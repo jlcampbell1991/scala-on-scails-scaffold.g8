@@ -5,11 +5,11 @@ object $CamelCase$Update extends $CamelCase$ScaffoldWriter {
   def update[F[_]: Sync](\${camelCase}: \${CamelCase}, userId: UserId)(implicit XA: Transactor[F]): F[\${CamelCase}] =
     sql\${tripQuotes}
       update \${table_name} set
-        \${Fields.toSqlUpdate}
+        \${$CamelCase$Fields.toSqlUpdate}
         updated_at = \$\${Date.now}
       where id = \$\${\${camelCase}.id.map(_.value)}
       and user_id = \$\${userId.id}
-    \${tripQuotes}.update.withUniqueGeneratedKeys[\${CamelCase}](\${Fields.toKeysQuoted}, "created_at", "updated_at", "id", "user_id").transact(XA)"""
+    \${tripQuotes}.update.withUniqueGeneratedKeys[\${CamelCase}](\${$CamelCase$Fields.toKeysQuoted}, "created_at", "updated_at", "id", "user_id").transact(XA)"""
 
   def update = {
     replace(
