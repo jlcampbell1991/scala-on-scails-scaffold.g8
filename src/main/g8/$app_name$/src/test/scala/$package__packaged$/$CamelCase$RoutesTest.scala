@@ -25,7 +25,6 @@ $UPPER_SNAKE_CASE$_TEST
     )
   }
   """GET -> Root / "$normalized$/ id"""" in {
-    println($camelCase$.updateUrl)
     check[String](
       service.orNotFound
         .run(
